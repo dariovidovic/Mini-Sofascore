@@ -7,6 +7,29 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/color_primary_default"
+            app:contentInsetStart="16dp"
+            app:menu="@menu/main_list_menu">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:src="@drawable/ic_sofascore_lockup"
+                tools:ignore="ContentDescription" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
@@ -14,7 +37,6 @@
         android:background="@color/color_primary_default"
         app:tabIconTint="@color/surface_surface_1"
         app:tabSelectedTextColor="@color/surface_surface_1"
-        android:layout_marginStart="8dp"
         app:tabTextAppearance="@style/Body"
         app:tabTextColor="@color/surface_surface_1" />
 
@@ -22,12 +44,6 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="?actionBarSize"
-        android:theme="?attr/actionBarTheme" />
 
 
 </LinearLayout>

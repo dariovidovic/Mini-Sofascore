@@ -1,10 +1,11 @@
 package com.example.mini_sofascore
 
-import android.graphics.Color
 import android.os.Bundle
-
+import android.view.Menu
+import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.example.mini_sofascore.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -21,8 +22,12 @@ val tabsIcons = intArrayOf(
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+
 
         val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
@@ -54,7 +59,10 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+    }
 
-
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_list_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }
