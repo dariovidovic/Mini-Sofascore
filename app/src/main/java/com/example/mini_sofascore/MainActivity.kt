@@ -2,16 +2,17 @@ package com.example.mini_sofascore
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.mini_sofascore.databinding.ActivityMainBinding
+import com.example.mini_sofascore.viewmodels.MatchesViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 
 private lateinit var binding: ActivityMainBinding
+private lateinit var matchesViewModel : MatchesViewModel
 
 val tabsArray = arrayOf("Football", "Basketball", "Am. Football")
 val tabsIcons = intArrayOf(
@@ -28,15 +29,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
+        matchesViewModel = ViewModelProvider(this)[MatchesViewModel::class.java]
 
         val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabsArray[position]
-            tab.icon = resources.getDrawable(tabsIcons[position])
+            tab.icon =  ContextCompat.getDrawable(this, tabsIcons[position] )
 
         }.attach()
+
+
+        binding.testButton.setOnClickListener {
+            matchesViewModel.getMatchesByDate("football", "2023-05-07")
+        }
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {

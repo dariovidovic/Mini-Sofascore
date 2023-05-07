@@ -7,6 +7,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
@@ -40,10 +41,17 @@
         app:tabTextAppearance="@style/Body"
         app:tabTextColor="@color/surface_surface_1" />
 
+    <Button
+        android:id="@+id/test_button"
+        android:layout_width="20dp"
+        android:layout_height="30dp"
+        android:background="@color/color_primary_default"/>
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+    </androidx.viewpager2.widget.ViewPager2>
 
 
 </LinearLayout>
