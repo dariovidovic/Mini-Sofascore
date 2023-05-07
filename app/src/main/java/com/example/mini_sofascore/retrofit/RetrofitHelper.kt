@@ -14,7 +14,7 @@ class RetrofitHelper {
         private val okHttpClient = OkHttpClient.Builder().addInterceptor(logger)
 
         @Synchronized
-        fun getRetroInstance(): FootballService {
+        fun getRetrofitInstance(): FootballService {
             if (instance == null)
                 instance = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
                     .client(okHttpClient.build())

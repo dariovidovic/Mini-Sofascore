@@ -1,10 +1,14 @@
 package com.example.mini_sofascore
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mini_sofascore.databinding.ActivityMainBinding
 import com.example.mini_sofascore.viewmodels.MatchesViewModel
 import com.google.android.material.tabs.TabLayout
@@ -26,10 +30,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        matchesViewModel = ViewModelProvider(this)[MatchesViewModel::class.java]
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
-        matchesViewModel = ViewModelProvider(this)[MatchesViewModel::class.java]
+
 
         val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
@@ -37,13 +42,22 @@ class MainActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabsArray[position]
             tab.icon =  ContextCompat.getDrawable(this, tabsIcons[position] )
-
         }.attach()
 
 
         binding.testButton.setOnClickListener {
-            matchesViewModel.getMatchesByDate("football", "2023-05-07")
+            matchesViewModel.getMatchesByDate("football", "2023-05-03")
+            Log.d("testiram", matchesViewModel.matches.value.toString())
+
         }
+
+        matchesViewModel.getMatches().observe(this){
+            Toast.makeText(this@MainActivity, "Doslo je do promjene", Toast.LENGTH_SHORT).show()
+        }
+
+
+
+
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
