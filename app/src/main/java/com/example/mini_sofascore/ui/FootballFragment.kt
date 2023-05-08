@@ -1,6 +1,7 @@
 package com.example.mini_sofascore.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,16 +37,21 @@ class FootballFragment : Fragment() {
 
 
         binding.test.setOnClickListener {
-            matchesViewModel.getMatchesByDate("football", "2023-05-03")
+            matchesViewModel.getMatchesByDate("football", "2023-04-26")
         }
 
-        matchesViewModel.getMatches().observe(viewLifecycleOwner){
-            eventsAdapter.setData(it.toMutableList())
+        matchesViewModel.matches.observe(viewLifecycleOwner){ it ->
+            val sortedList = it.groupBy { it?.tournament?.name }.flatMap {
+                listOf(it.key) + it.value
+            }
+            Log.d("sortedList", sortedList.toString())
+            eventsAdapter.setData(sortedList)
         }
 
         return binding.root
 
     }
+
 
     companion object {
         fun newInstance() = FootballFragment()

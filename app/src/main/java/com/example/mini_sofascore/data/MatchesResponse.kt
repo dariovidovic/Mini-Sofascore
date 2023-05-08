@@ -4,12 +4,13 @@ import java.io.Serializable
 
 
 data class Matches(
+    val tournament: Tournaments,
     val status: String,
     val startDate: String,
     val homeTeam: HomeTeam,
     val awayTeam: AwayTeam,
-    val homeScore: List<HomeScore>,
-    val awayScore: List<AwayScore>
+    val homeScore: HomeScore,
+    val awayScore: AwayScore
 ) : Serializable
 
 

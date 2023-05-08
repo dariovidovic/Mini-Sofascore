@@ -45,20 +45,6 @@ class MainActivity : AppCompatActivity() {
         }.attach()
 
 
-        binding.testButton.setOnClickListener {
-            matchesViewModel.getMatchesByDate("football", "2023-05-03")
-            Log.d("testiram", matchesViewModel.matches.value.toString())
-
-        }
-
-        matchesViewModel.getMatches().observe(this){
-            Toast.makeText(this@MainActivity, "Doslo je do promjene", Toast.LENGTH_SHORT).show()
-        }
-
-
-
-
-
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 binding.run {
