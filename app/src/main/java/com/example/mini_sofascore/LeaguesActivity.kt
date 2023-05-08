@@ -1,31 +1,23 @@
 package com.example.mini_sofascore
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import com.example.mini_sofascore.databinding.ActivityMainBinding
 import com.example.mini_sofascore.viewmodels.MatchesViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-
 private lateinit var binding: ActivityMainBinding
 private lateinit var matchesViewModel: MatchesViewModel
 
 
-val tabsArray = arrayOf("Football", "Basketball", "Am. Football")
-val tabsIcons = intArrayOf(
-    R.drawable.ic_icon_football, R.drawable.ic_icon_basketball, R.drawable.ic_icon_american_football
-)
 
-
-class MainActivity : AppCompatActivity() {
+class LeaguesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -49,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 binding.run {
                     tabLayout.setSelectedTabIndicatorColor(
                         ContextCompat.getColor(
-                            this@MainActivity,
+                            this@LeaguesActivity,
                             R.color.surface_surface_1
                         )
                     )
@@ -67,17 +59,4 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.trophy -> {
-                startActivity(Intent(this@MainActivity, LeaguesActivity::class.java))
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_list_menu, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
 }
