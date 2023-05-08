@@ -5,14 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.SportFragment">
-
-    <Button
-        android:id="@+id/test_button"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="@color/color_primary_default"
-        android:text="HISTORY DATE" />
+    tools:context=".ui.LeaguesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

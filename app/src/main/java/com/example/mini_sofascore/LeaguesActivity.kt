@@ -1,12 +1,10 @@
 package com.example.mini_sofascore
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.example.mini_sofascore.adapters.LeaguesViewPagerAdapter
 import com.example.mini_sofascore.databinding.ActivityMainBinding
 import com.example.mini_sofascore.viewmodels.MatchesViewModel
 import com.google.android.material.tabs.TabLayout
@@ -25,10 +23,11 @@ class LeaguesActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        matchesViewModel = ViewModelProvider(this).get(MatchesViewModel::class.java)
+        matchesViewModel = ViewModelProvider(this)[MatchesViewModel::class.java]
 
-        val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
+        val adapter = LeaguesViewPagerAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
+
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabsArray[position]

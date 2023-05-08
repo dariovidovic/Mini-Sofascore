@@ -1,6 +1,5 @@
 package com.example.mini_sofascore.viewmodels
 
-import android.media.Image
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,13 +17,6 @@ class MatchesViewModel : ViewModel() {
     private val _tournaments = MutableLiveData<List<Tournaments?>>()
     val tournaments : LiveData<List<Tournaments?>> = _tournaments
 
-    fun getMatches() : MutableLiveData<List<Matches?>> {
-        return _matches
-    }
-
-    fun getEventTournaments() : MutableLiveData<List<Tournaments?>>{
-        return _tournaments
-    }
 
     fun getMatchesByDate(slug: String, date: String){
         viewModelScope.launch(Dispatchers.IO) {

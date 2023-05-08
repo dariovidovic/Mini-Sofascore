@@ -1,4 +1,4 @@
-package com.example.mini_sofascore
+package com.example.mini_sofascore.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -4,19 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
-import androidx.lifecycle.ViewModelProvider
+import com.example.mini_sofascore.adapters.MatchesViewPagerAdapter
 import com.example.mini_sofascore.databinding.ActivityMainBinding
-import com.example.mini_sofascore.viewmodels.MatchesViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 
 private lateinit var binding: ActivityMainBinding
-private lateinit var matchesViewModel: MatchesViewModel
 
 
 val tabsArray = arrayOf("Football", "Basketball", "Am. Football")
@@ -33,9 +29,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-        matchesViewModel = ViewModelProvider(this).get(MatchesViewModel::class.java)
 
-        val adapter = ViewPagerAdapter(supportFragmentManager, lifecycle)
+        val adapter = MatchesViewPagerAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
