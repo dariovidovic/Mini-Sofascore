@@ -14,7 +14,6 @@ private lateinit var binding: ActivityMainBinding
 private lateinit var matchesViewModel: MatchesViewModel
 
 
-
 class LeaguesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

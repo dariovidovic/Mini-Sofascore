@@ -25,6 +25,7 @@ class LeaguesFragment : Fragment() {
         }
         super.onCreate(savedInstanceState)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,13 +33,15 @@ class LeaguesFragment : Fragment() {
         _binding = FragmentLeaguesBinding.inflate(inflater, container, false)
 
         val eventsAdapter = EventsAdapter()
-        val linearLayoutManager =
+        val leaguesLinearLayoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.eventsRecyclerView.layoutManager = linearLayoutManager
+        binding.eventsRecyclerView.layoutManager = leaguesLinearLayoutManager
         binding.eventsRecyclerView.adapter = eventsAdapter
-        viewModel.tournaments.observe(viewLifecycleOwner){
+        viewModel.tournaments.observe(viewLifecycleOwner) {
             eventsAdapter.setData(it)
         }
+
+
 
 
 

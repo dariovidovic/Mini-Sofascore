@@ -9,9 +9,12 @@ import retrofit2.http.Path
 interface FootballService {
 
     @GET("/sport/{slug}/events/{date}")
-    suspend fun getMatches(@Path("slug") slug: String, @Path("date") date: String) : Response<List<Matches?>>
+    suspend fun getMatches(
+        @Path("slug") slug: String,
+        @Path("date") date: String
+    ): Response<List<Matches?>>
 
     @GET("/sport/{slug}/tournaments")
-    suspend fun getTournaments(@Path("slug") slug: String) : Response<List<Tournaments?>>
+    suspend fun getTournaments(@Path("slug") slug: String): Response<List<Tournaments?>>
 
 }
