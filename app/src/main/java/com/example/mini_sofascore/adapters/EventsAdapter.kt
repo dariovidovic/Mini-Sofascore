@@ -9,6 +9,7 @@ import com.example.mini_sofascore.data.Tournaments
 import com.example.mini_sofascore.databinding.LeaguesItemBinding
 import com.example.mini_sofascore.databinding.MatchesItemBinding
 import com.example.mini_sofascore.databinding.TournamentItemBinding
+import com.example.mini_sofascore.utils.Helper
 import java.lang.IllegalArgumentException
 
 private const val TYPE_TOURNAMENT = 0
@@ -77,18 +78,14 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class MatchesViewHolder(private val binding: MatchesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(match: Matches?) {
-            binding.homeTeamLogo.load("https://academy.dev.sofascore.com/team/${match?.homeTeam?.id}/image")
-            binding.awayTeamLogo.load("https://academy.dev.sofascore.com/team/${match?.awayTeam?.id}/image")
+            binding.homeTeamLogo.load(Helper.getTeamImageUrl(match?.homeTeam?.id))
+            binding.awayTeamLogo.load(Helper.getTeamImageUrl(match?.awayTeam?.id))
             if (match?.status == "notstarted") {
                 binding.matchStatus.text = ""
             } else binding.matchStatus.text = "FT"
-            if (match?.homeScore?.total == null) {
-                binding.homeTeamScore.text = ""
-            } else binding.homeTeamScore.text = match.homeScore.total.toString()
 
-            if (match?.awayScore?.total == null) {
-                binding.awayTeamScore.text = ""
-            } else binding.awayTeamScore.text = match.awayScore.total.toString()
+            binding.homeTeamScore.text = match?.homeScore?.total?.toString()
+            binding.awayTeamScore.text = match?.awayScore?.total?.toString()
 
             binding.homeTeamName.text = match?.homeTeam?.name
             binding.awayTeamName.text = match?.awayTeam?.name
@@ -99,7 +96,7 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class TournamentViewHolder(private val binding: TournamentItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(tournament: String, match: Matches?) {
-            binding.tournamentLogo.load("https://academy.dev.sofascore.com/tournament/${match?.tournament?.id}/image")
+            binding.tournamentLogo.load(Helper.getTournamentImageUrl(match?.tournament?.id))
             binding.tournamentName.text = tournament
             binding.countryName.text = match?.tournament?.country?.name
         }
@@ -108,7 +105,7 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class LeaguesViewHolder(private val binding: LeaguesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(tournament: Tournaments) {
-            binding.tournamentLogo.load("https://academy.dev.sofascore.com/tournament/${tournament.id}/image")
+            binding.tournamentLogo.load(Helper.getTournamentImageUrl(tournament.id))
             binding.leagueName.text = tournament.name
         }
     }

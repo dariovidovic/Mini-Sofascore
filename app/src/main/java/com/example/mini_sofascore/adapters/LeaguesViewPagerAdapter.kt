@@ -19,7 +19,7 @@ class LeaguesViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifec
         when (position) {
             0 -> return LeaguesFragment.newInstance("football")
             1 -> return LeaguesFragment.newInstance("basketball")
-            2 -> return LeaguesFragment.newInstance("football")
+            2 -> return LeaguesFragment.newInstance("american-football")
         }
         return LeaguesFragment.newInstance("football")
     }

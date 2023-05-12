@@ -18,7 +18,7 @@ class LeaguesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = this.arguments
-        val slug = bundle?.getString("string")
+        val slug = bundle?.getString("leagueSlug")
 
         if (slug != null) {
             viewModel.getTournaments(slug)
@@ -49,10 +49,10 @@ class LeaguesFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(string: String): LeaguesFragment {
+        fun newInstance(leagueSlug: String): LeaguesFragment {
             val fragment = LeaguesFragment()
             val bundle = Bundle()
-            bundle.putString("string", string)
+            bundle.putString("leagueSlug", leagueSlug)
             fragment.arguments = bundle
             return fragment
         }

@@ -18,7 +18,7 @@ class MatchesViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifec
         when (position) {
             0 -> return MatchesFragment.newInstance("football")
             1 -> return MatchesFragment.newInstance("basketball")
-            2 -> return MatchesFragment.newInstance("football")
+            2 -> return MatchesFragment.newInstance("american-football")
         }
         return MatchesFragment.newInstance("football")
 

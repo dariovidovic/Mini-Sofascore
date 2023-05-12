@@ -12,6 +12,7 @@ import com.example.mini_sofascore.adapters.EventsAdapter
 import com.example.mini_sofascore.databinding.FragmentMatchesBinding
 import com.example.mini_sofascore.viewmodels.MatchesViewModel
 
+
 class MatchesFragment : Fragment() {
     private var _binding: FragmentMatchesBinding? = null
     private val binding get() = _binding!!
@@ -28,7 +29,7 @@ class MatchesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = this.arguments
-        val slug = bundle?.getString("string")
+        val slug = bundle?.getString("sportSlug")
         if (slug != null) {
             viewModel.getMatchesByDate(slug, "2023-04-15")
         }
@@ -70,10 +71,10 @@ class MatchesFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance(string: String): MatchesFragment {
+        fun newInstance(sportSlug: String): MatchesFragment {
             val fragment = MatchesFragment()
             val bundle = Bundle()
-            bundle.putString("string", string)
+            bundle.putString("sportSlug", sportSlug)
             fragment.arguments = bundle
             return fragment
         }

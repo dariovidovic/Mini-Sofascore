@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.mini_sofascore.data.Matches
 import com.example.mini_sofascore.data.Tournaments
 import com.example.mini_sofascore.retrofit.RetrofitHelper
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MatchesViewModel : ViewModel() {
@@ -19,16 +18,20 @@ class MatchesViewModel : ViewModel() {
 
 
     fun getMatchesByDate(slug: String, date: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val matches = RetrofitHelper.getRetrofitInstance().getMatches(slug, date).body()
-            _matches.postValue(matches!!)
+            matches?.also {
+                _matches.postValue(it)
+            }
         }
     }
 
     fun getTournaments(slug: String) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val tournaments = RetrofitHelper.getRetrofitInstance().getTournaments(slug).body()
-            _tournaments.postValue(tournaments!!)
+            tournaments?.also {
+                _tournaments.postValue(it)
+            }
         }
     }
 
