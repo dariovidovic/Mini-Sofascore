@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/ic_icon_football.xml" value="0.17" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/ic_pointer_right.xml" value="0.156" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/ic_sofascore_lockup.xml" value="0.1675" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/tab_indicator_selected.xml" value="0.1165" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_event_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_leagues.xml" value="0.25416666666666665" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_main.xml" value="0.14035087719298245" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_main_list.xml" value="0.2037037037037037" />

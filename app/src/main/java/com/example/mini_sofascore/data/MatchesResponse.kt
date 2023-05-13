@@ -3,7 +3,8 @@ package com.example.mini_sofascore.data
 import java.io.Serializable
 
 
-data class Matches(
+data class Match(
+    val id: Int,
     val tournament: Tournaments,
     val status: String,
     val startDate: String,
@@ -18,5 +19,6 @@ data class HomeTeam(val id: Int, val name: String) : Serializable
 
 data class AwayTeam(val id: Int, val name: String) : Serializable
 
-data class HomeScore(val total: Int) : Serializable
-data class AwayScore(val total: Int) : Serializable
+data class HomeScore(val total: Int, val period1 : Int, val period2: Int) : Serializable
+
+data class AwayScore(val total: Int, val period1 : Int, val period2: Int) : Serializable

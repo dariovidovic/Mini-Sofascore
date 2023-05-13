@@ -1,15 +1,18 @@
 package com.example.mini_sofascore.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.mini_sofascore.data.Matches
+import com.example.mini_sofascore.EventDetailActivity
+import com.example.mini_sofascore.data.Match
 import com.example.mini_sofascore.data.Tournaments
 import com.example.mini_sofascore.databinding.LeaguesItemBinding
 import com.example.mini_sofascore.databinding.MatchesItemBinding
 import com.example.mini_sofascore.databinding.TournamentItemBinding
 import com.example.mini_sofascore.utils.Helper
+import java.lang.ClassCastException
 import java.lang.IllegalArgumentException
 
 private const val TYPE_TOURNAMENT = 0
@@ -49,7 +52,7 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun getItemViewType(position: Int) = when (matches[position]) {
-        is Matches -> TYPE_EVENT
+        is Match -> TYPE_EVENT
         is String -> TYPE_TOURNAMENT
         is Tournaments -> TYPE_LEAGUES
         else -> throw IllegalArgumentException()
@@ -57,17 +60,24 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         if (getItemViewType(position) == TYPE_EVENT) {
-            (holder as MatchesViewHolder).bind(matches[position] as Matches?)
+            (holder as MatchesViewHolder).bind(matches[position] as Match?)
         } else if (getItemViewType(position) == TYPE_TOURNAMENT) {
             (holder as TournamentViewHolder).bind(
                 matches[position] as String,
-                matches[position + 1] as Matches?
+                matches[position + 1] as Match?
             )
         } else
             (holder as LeaguesViewHolder).bind(matches[position] as Tournaments)
 
+        holder.itemView.setOnClickListener {
+
+            val match = matches.getOrNull(position) as? Match
+            match?.let {
+                EventDetailActivity.start(holder.itemView.context, match.id)
+            }
+
+        }
 
     }
 
@@ -77,7 +87,7 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class MatchesViewHolder(private val binding: MatchesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(match: Matches?) {
+        fun bind(match: Match?) {
             binding.homeTeamLogo.load(Helper.getTeamImageUrl(match?.homeTeam?.id))
             binding.awayTeamLogo.load(Helper.getTeamImageUrl(match?.awayTeam?.id))
             if (match?.status == "notstarted") {
@@ -95,7 +105,7 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class TournamentViewHolder(private val binding: TournamentItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(tournament: String, match: Matches?) {
+        fun bind(tournament: String, match: Match?) {
             binding.tournamentLogo.load(Helper.getTournamentImageUrl(match?.tournament?.id))
             binding.tournamentName.text = tournament
             binding.countryName.text = match?.tournament?.country?.name

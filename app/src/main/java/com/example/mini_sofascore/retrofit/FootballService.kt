@@ -1,6 +1,7 @@
 package com.example.mini_sofascore.retrofit
 
-import com.example.mini_sofascore.data.Matches
+import com.example.mini_sofascore.data.Event
+import com.example.mini_sofascore.data.Match
 import com.example.mini_sofascore.data.Tournaments
 import retrofit2.Response
 import retrofit2.http.GET
@@ -12,9 +13,12 @@ interface FootballService {
     suspend fun getMatches(
         @Path("slug") slug: String,
         @Path("date") date: String
-    ): Response<List<Matches?>>
+    ): Response<List<Match?>>
 
     @GET("/sport/{slug}/tournaments")
     suspend fun getTournaments(@Path("slug") slug: String): Response<List<Tournaments?>>
+
+    @GET("/event/{id}")
+    suspend fun getEvent(@Path("id") id: Int) : Response<Event>
 
 }
