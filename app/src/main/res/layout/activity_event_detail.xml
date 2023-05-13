@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".EventDetailActivity">
 
 
@@ -50,9 +51,110 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Football, Spain, LaLiga, Round 15" />
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/home_team_logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/home_team_name"
+            style="@style/Assistive"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_team_logo"
+            tools:text="Manchester United" />
+
+
+        <ImageView
+            android:id="@+id/away_team_logo"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginBottom="55dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/away_team_name"
+            style="@style/Assistive"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/away_team_logo"
+            tools:text="Barcelona" />
+
+        <TextView
+            android:id="@+id/home_team_score"
+            style="@style/Headline1Desktop"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="16dp"
+            android:gravity="right"
+            app:layout_constraintStart_toEndOf="@id/home_team_logo"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
+
+        <TextView
+            android:id="@+id/away_team_score"
+            style="@style/Headline1Desktop"
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="112dp"
+            android:gravity="left"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2" />
+
+        <TextView
+            android:id="@+id/dash"
+            style="@style/Headline1Desktop"
+            android:layout_width="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="4dp"
+            android:text="-"
+            app:layout_constraintEnd_toStartOf="@id/away_team_score"
+            app:layout_constraintStart_toEndOf="@id/home_team_score"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/event_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Micro"
+            tools:text="Full Time"
+            app:layout_constraintTop_toBottomOf="@id/dash"
+            android:layout_marginTop="1dp"
+            app:layout_constraintStart_toEndOf="@id/home_team_name"
+            android:layout_marginStart="70dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

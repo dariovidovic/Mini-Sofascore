@@ -40,6 +40,19 @@ class EventDetailActivity : AppCompatActivity() {
                 )
 
                 tournamentLogo.load(Helper.getTournamentImageUrl(eventViewModel.event.value?.tournament?.id))
+                homeTeamLogo.load(Helper.getTeamImageUrl(eventViewModel.event.value?.homeTeam?.id))
+                awayTeamLogo.load(Helper.getTeamImageUrl(eventViewModel.event.value?.awayTeam?.id))
+                homeTeamName.text = eventViewModel.event.value?.homeTeam?.name
+                awayTeamName.text = eventViewModel.event.value?.awayTeam?.name
+                homeTeamScore.text = eventViewModel.event.value?.homeScore?.total.toString()
+                awayTeamScore.text = eventViewModel.event.value?.awayScore?.total.toString()
+
+                val event = eventViewModel.event.value
+                if (event?.status == "finished") {
+                    eventStatus.text = "Full Time"
+                } else eventStatus.text = "18:00"
+
+
             }
         }
 
