@@ -16,7 +16,8 @@ data class TeamStanding(
     val played: Int,
     val wins: Int,
     val draws: Int,
-    val losses: Int
+    val losses: Int,
+    val percentage: Float
 )
 
 data class Team(val id: Int, val name: String)

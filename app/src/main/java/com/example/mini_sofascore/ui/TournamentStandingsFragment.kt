@@ -30,8 +30,9 @@ class TournamentStandingsFragment : Fragment() {
     ): View {
         _binding = FragmentTournamentStandingsBinding.inflate(layoutInflater, container, false)
 
-
-        val adapter = StandingsAdapter()
+        val sportName =
+            viewModel.tournamentStandings.value?.get(0)?.tournament?.sport?.name ?: "football"
+        val adapter = StandingsAdapter(sportName)
         val linearLayoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.standingsRecyclerView.layoutManager = linearLayoutManager
@@ -40,7 +41,10 @@ class TournamentStandingsFragment : Fragment() {
 
 
         viewModel.tournamentStandings.observe(viewLifecycleOwner) {
-            it[2]?.sortedStandingsRows?.let { it1 -> adapter.setData(it1) }
+            if (sportName == "Football")
+                it[2]?.sortedStandingsRows?.let { it1 -> adapter.setData(it1) }
+            else
+                it[0]?.sortedStandingsRows?.let { it1 -> adapter.setData(it1) }
         }
 
         return binding.root
