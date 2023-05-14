@@ -32,48 +32,23 @@
 
     <TextView
         android:id="@+id/incident_player_name"
-        style="@style/Body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toEndOf="@id/away_team_score"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Cristiano Ronaldo" />
-
-    <TextView
-        android:id="@+id/home_team_score"
-        style="@style/Headline1"
-        android:layout_width="32dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="14dp"
-        android:gravity="end"
         app:layout_constraintStart_toEndOf="@id/incident_icon"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="1" />
-
-    <TextView
-        android:id="@+id/away_team_score"
-        style="@style/Headline1"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="14dp"
-        app:layout_constraintStart_toEndOf="@id/dash"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="1" />
+        tools:text="Cristiano Ronaldo"
+        style="@style/Body"/>
 
     <TextView
-        android:id="@+id/dash"
-        style="@style/Headline1"
-        android:layout_width="12dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="14dp"
-        android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/home_team_score"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="-" />
+        android:id="@+id/incident_reason"
+        app:layout_constraintTop_toBottomOf="@id/incident_player_name"
+        app:layout_constraintStart_toEndOf="@id/incident_time"
+        android:layout_marginStart="20dp"
+        style="@style/Micro"
+        android:text="@string/foul"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

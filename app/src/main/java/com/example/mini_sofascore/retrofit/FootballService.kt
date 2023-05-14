@@ -1,6 +1,7 @@
 package com.example.mini_sofascore.retrofit
 
 import com.example.mini_sofascore.data.Event
+import com.example.mini_sofascore.data.Incidents
 import com.example.mini_sofascore.data.Match
 import com.example.mini_sofascore.data.Tournaments
 import retrofit2.Response
@@ -21,4 +22,6 @@ interface FootballService {
     @GET("/event/{id}")
     suspend fun getEvent(@Path("id") id: Int) : Response<Event>
 
+    @GET("/event/{id}/incidents")
+    suspend fun getIncidents(@Path("id") id: Int) : Response<List<Incidents?>>
 }

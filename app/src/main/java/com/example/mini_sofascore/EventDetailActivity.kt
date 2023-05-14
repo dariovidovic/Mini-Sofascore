@@ -6,14 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
-import com.example.mini_sofascore.adapters.MatchesViewPagerAdapter
+import com.example.mini_sofascore.adapters.IncidentsAdapter
 import com.example.mini_sofascore.databinding.ActivityEventDetailBinding
 import com.example.mini_sofascore.utils.Helper
 import com.example.mini_sofascore.viewmodels.EventViewModel
+import com.example.mini_sofascore.viewmodels.IncidentsViewModel
 
 private lateinit var binding: ActivityEventDetailBinding
 private lateinit var eventViewModel: EventViewModel
+private lateinit var incidentsViewModel: IncidentsViewModel
 
 class EventDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,10 +27,14 @@ class EventDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val currentMatchId = intent.extras?.getInt(EVENT_ID)
-        Log.d("TEST", currentMatchId.toString())
+
         eventViewModel = ViewModelProvider(this)[EventViewModel::class.java]
+        incidentsViewModel = ViewModelProvider(this)[IncidentsViewModel::class.java]
 
         eventViewModel.getEventById(currentMatchId ?: 0)
+        incidentsViewModel.getIncidentsById(currentMatchId ?: 0)
+
+        Log.d("TEST", currentMatchId.toString())
 
         eventViewModel.event.observe(this) {
             binding.run {
@@ -56,6 +63,14 @@ class EventDetailActivity : AppCompatActivity() {
             }
         }
 
+        val adapter = IncidentsAdapter()
+        val linearLayoutManager =
+            LinearLayoutManager(this@EventDetailActivity, LinearLayoutManager.VERTICAL, true)
+        binding.matchDetailsRecyclerView.adapter = adapter
+        binding.matchDetailsRecyclerView.layoutManager = linearLayoutManager
+        incidentsViewModel.incidents.observe(this) {
+            adapter.setData(it, eventViewModel.event.value?.tournament?.sport?.name ?: "football")
+        }
 
 
 

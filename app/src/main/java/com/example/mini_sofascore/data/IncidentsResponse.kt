@@ -1,7 +1,9 @@
 package com.example.mini_sofascore.data
 
 data class Incidents(
-    val text: String, val player: Player, val scoringTeam: String,
+    val text: String,
+    val player: Player,
+    val scoringTeam: String,
     val homeScore: Int,
     val awayScore: Int,
     val goalType: String,

@@ -1,6 +1,5 @@
 package com.example.mini_sofascore.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +11,6 @@ import com.example.mini_sofascore.databinding.LeaguesItemBinding
 import com.example.mini_sofascore.databinding.MatchesItemBinding
 import com.example.mini_sofascore.databinding.TournamentItemBinding
 import com.example.mini_sofascore.utils.Helper
-import java.lang.ClassCastException
 import java.lang.IllegalArgumentException
 
 private const val TYPE_TOURNAMENT = 0
@@ -71,7 +69,6 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             (holder as LeaguesViewHolder).bind(matches[position] as Tournaments)
 
         holder.itemView.setOnClickListener {
-
             val match = matches.getOrNull(position) as? Match
             match?.let {
                 EventDetailActivity.start(holder.itemView.context, match.id)
