@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mini_sofascore.data.Match
-import com.example.mini_sofascore.data.Tournaments
+import com.example.mini_sofascore.data.Tournament
 import com.example.mini_sofascore.retrofit.RetrofitHelper
 import kotlinx.coroutines.launch
 
@@ -13,8 +13,8 @@ class MatchesViewModel : ViewModel() {
 
     private val _matches = MutableLiveData<List<Match?>>()
     val matches: LiveData<List<Match?>> = _matches
-    private val _tournaments = MutableLiveData<List<Tournaments?>>()
-    val tournaments: LiveData<List<Tournaments?>> = _tournaments
+    private val _tournaments = MutableLiveData<List<Tournament?>>()
+    val tournaments: LiveData<List<Tournament?>> = _tournaments
 
 
     fun getMatchesByDate(slug: String, date: String) {

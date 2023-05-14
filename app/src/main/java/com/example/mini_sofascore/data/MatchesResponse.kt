@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class Match(
     val id: Int,
-    val tournament: Tournaments,
+    val tournament: Tournament,
     val status: String,
     val startDate: String,
     val homeTeam: HomeTeam,

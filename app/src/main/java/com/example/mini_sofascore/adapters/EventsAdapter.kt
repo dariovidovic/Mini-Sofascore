@@ -5,8 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.mini_sofascore.EventDetailActivity
+import com.example.mini_sofascore.TournamentDetailsActivity
 import com.example.mini_sofascore.data.Match
-import com.example.mini_sofascore.data.Tournaments
+import com.example.mini_sofascore.data.Tournament
 import com.example.mini_sofascore.databinding.LeaguesItemBinding
 import com.example.mini_sofascore.databinding.MatchesItemBinding
 import com.example.mini_sofascore.databinding.TournamentItemBinding
@@ -52,7 +53,7 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun getItemViewType(position: Int) = when (matches[position]) {
         is Match -> TYPE_EVENT
         is String -> TYPE_TOURNAMENT
-        is Tournaments -> TYPE_LEAGUES
+        is Tournament -> TYPE_LEAGUES
         else -> throw IllegalArgumentException()
 
     }
@@ -66,10 +67,15 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 matches[position + 1] as Match?
             )
         } else
-            (holder as LeaguesViewHolder).bind(matches[position] as Tournaments)
+            (holder as LeaguesViewHolder).bind(matches[position] as Tournament)
 
         holder.itemView.setOnClickListener {
             val match = matches.getOrNull(position) as? Match
+            val tournament = matches.getOrNull(position) as? String
+            tournament?.let {
+                val currentTournament = matches[position+1] as Match?
+                TournamentDetailsActivity.start(holder.itemView.context, currentTournament?.tournament?.id?:1 )
+            }
             match?.let {
                 EventDetailActivity.start(holder.itemView.context, match.id)
             }
@@ -111,7 +117,7 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class LeaguesViewHolder(private val binding: LeaguesItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(tournament: Tournaments) {
+        fun bind(tournament: Tournament) {
             binding.tournamentLogo.load(Helper.getTournamentImageUrl(tournament.id))
             binding.leagueName.text = tournament.name
         }

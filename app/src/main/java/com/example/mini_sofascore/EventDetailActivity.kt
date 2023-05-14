@@ -14,11 +14,14 @@ import com.example.mini_sofascore.utils.Helper
 import com.example.mini_sofascore.viewmodels.EventViewModel
 import com.example.mini_sofascore.viewmodels.IncidentsViewModel
 
-private lateinit var binding: ActivityEventDetailBinding
+
 private lateinit var eventViewModel: EventViewModel
 private lateinit var incidentsViewModel: IncidentsViewModel
 
 class EventDetailActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityEventDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_detail)
@@ -45,7 +48,6 @@ class EventDetailActivity : AppCompatActivity() {
                     eventViewModel.event.value?.tournament?.name,
                     eventViewModel.event.value?.round.toString()
                 )
-
                 tournamentLogo.load(Helper.getTournamentImageUrl(eventViewModel.event.value?.tournament?.id))
                 homeTeamLogo.load(Helper.getTeamImageUrl(eventViewModel.event.value?.homeTeam?.id))
                 awayTeamLogo.load(Helper.getTeamImageUrl(eventViewModel.event.value?.awayTeam?.id))
@@ -92,7 +94,6 @@ class EventDetailActivity : AppCompatActivity() {
             }
 
         }
-
     }
 }
 
