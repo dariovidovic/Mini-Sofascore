@@ -1,6 +1,5 @@
 package com.example.mini_sofascore.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -10,13 +9,16 @@ import coil.load
 import com.example.mini_sofascore.EventDetailActivity
 import com.example.mini_sofascore.data.Match
 import com.example.mini_sofascore.databinding.MatchesItemBinding
+import com.example.mini_sofascore.databinding.TournamentRoundItemBinding
 import com.example.mini_sofascore.utils.Helper
 
-class TournamentMatchesAdapter : PagingDataAdapter<Match, TournamentMatchesAdapter.MatchesViewHolder>(MatchesDiffCallback()) {
 
-    private var matches: MutableList<Match> = arrayListOf()
+class TournamentMatchesAdapter :
+    PagingDataAdapter<Match, TournamentMatchesAdapter.MatchesViewHolder>(MatchesDiffCallback()) {
 
-    class MatchesViewHolder(private val binding: MatchesItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    class MatchesViewHolder(private val binding: MatchesItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(match: Match?) {
             binding.homeTeamLogo.load(Helper.getTeamImageUrl(match?.homeTeam?.id))
             binding.awayTeamLogo.load(Helper.getTeamImageUrl(match?.awayTeam?.id))
@@ -30,6 +32,13 @@ class TournamentMatchesAdapter : PagingDataAdapter<Match, TournamentMatchesAdapt
             binding.homeTeamName.text = match?.homeTeam?.name
             binding.awayTeamName.text = match?.awayTeam?.name
             binding.matchTime.text = match?.startDate?.subSequence(11, 16)
+        }
+    }
+
+    class TournamentRoundViewHolder(private val binding: TournamentRoundItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(tournamentRound: String) {
+            binding.tournamentRound.text = tournamentRound
         }
     }
 
@@ -62,6 +71,7 @@ class TournamentMatchesAdapter : PagingDataAdapter<Match, TournamentMatchesAdapt
 
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MatchesViewHolder {
         return MatchesViewHolder(
             MatchesItemBinding.inflate(
@@ -71,5 +81,6 @@ class TournamentMatchesAdapter : PagingDataAdapter<Match, TournamentMatchesAdapt
             )
         )
     }
+
 
 }

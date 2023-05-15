@@ -11,7 +11,8 @@ data class Match(
     val homeTeam: HomeTeam,
     val awayTeam: AwayTeam,
     val homeScore: HomeScore,
-    val awayScore: AwayScore
+    val awayScore: AwayScore,
+    val round: Int
 ) : Serializable
 
 

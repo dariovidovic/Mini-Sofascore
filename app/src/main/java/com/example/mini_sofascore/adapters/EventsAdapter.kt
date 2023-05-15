@@ -72,6 +72,13 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         holder.itemView.setOnClickListener {
             val match = matches.getOrNull(position) as? Match
             val tournament = matches.getOrNull(position) as? String
+            val league = matches.getOrNull(position) as? Tournament
+
+            league?.let {
+                val currentLeague = matches[position] as Tournament?
+                TournamentDetailsActivity.start(holder.itemView.context, currentLeague?.id?:1)
+            }
+
             tournament?.let {
                 val currentTournament = matches[position+1] as Match?
                 TournamentDetailsActivity.start(holder.itemView.context, currentTournament?.tournament?.id?:1 )
@@ -121,6 +128,7 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             binding.tournamentLogo.load(Helper.getTournamentImageUrl(tournament.id))
             binding.leagueName.text = tournament.name
         }
+
     }
 
     fun setData(matches: List<Any?>) {
