@@ -17,14 +17,21 @@ interface FootballService {
     suspend fun getTournaments(@Path("slug") slug: String): Response<List<Tournament?>>
 
     @GET("/event/{id}")
-    suspend fun getEvent(@Path("id") id: Int) : Response<Event>
+    suspend fun getEvent(@Path("id") id: Int): Response<Event>
 
     @GET("/event/{id}/incidents")
-    suspend fun getIncidents(@Path("id") id: Int) : Response<List<Incidents?>>
+    suspend fun getIncidents(@Path("id") id: Int): Response<List<Incidents?>>
 
     @GET("/tournament/{id}")
-    suspend fun getTournamentById(@Path("id") id: Int) : Response<Tournament>
+    suspend fun getTournamentById(@Path("id") id: Int): Response<Tournament>
 
     @GET("/tournament/{id}/standings")
-    suspend fun getTournamentStandings(@Path("id") id: Int) : Response<List<StandingsResponse?>>
+    suspend fun getTournamentStandings(@Path("id") id: Int): Response<List<StandingsResponse?>>
+
+    @GET("/tournament/{id}/events/{span}/{page}")
+    suspend fun getTournamentMatches(
+        @Path("id") id: Int,
+        @Path("span") span: String,
+        @Path("page") page: Int
+    ) : Response<List<Match>>
 }

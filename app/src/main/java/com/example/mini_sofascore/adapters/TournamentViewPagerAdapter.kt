@@ -1,6 +1,5 @@
 package com.example.mini_sofascore.adapters
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -14,7 +13,7 @@ private const val NUM_TABS = 2
 class TournamentViewPagerAdapter(
     fragmentManager: FragmentManager,
     lifecycle: Lifecycle,
-    val tournamentId : Int
+    private val tournamentId : Int
 ) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
     override fun getItemCount(): Int {
@@ -23,10 +22,10 @@ class TournamentViewPagerAdapter(
 
     override fun createFragment(position: Int): Fragment {
         when (position) {
-            0 -> return TournamentMatchesFragment.newInstance()
+            0 -> return TournamentMatchesFragment.newInstance(tournamentId)
             1 -> return TournamentStandingsFragment.newInstance(tournamentId)
         }
 
-        return TournamentMatchesFragment.newInstance()
+        return TournamentMatchesFragment.newInstance(tournamentId)
     }
 }
