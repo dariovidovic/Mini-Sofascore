@@ -58,7 +58,6 @@ class MatchesFragment : Fragment() {
         binding.datesRecyclerView.layoutManager = datesLinearLayoutManager
         binding.datesRecyclerView.adapter = datesAdapter
 
-
         viewModel.matches.observe(viewLifecycleOwner) { it ->
             val sortedList = it.groupBy { it?.tournament?.name }.flatMap {
                 listOf(it.key) + it.value

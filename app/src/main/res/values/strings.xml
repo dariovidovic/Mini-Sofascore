@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">Mini-Sofascore</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="leagues">Leagues</string>
     <string name="settings">Settings</string>
+    <string name="event_info">%s, %s, %s, Round %s</string>
+    <string name="dash">-</string>
+    <string name="foul">Foul</string>
+    <string name="ladder">#</string>
+    <string name="matches_played">P</string>
+    <string name="wins">W</string>
+    <string name="losses">L</string>
+    <string name="difference">DIFF</string>
+    <string name="team">Team</string>
+    <string name="points">Points</string>
+    <string name="ft">FT</string>
 </resources>

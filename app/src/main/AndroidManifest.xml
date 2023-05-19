@@ -16,6 +16,12 @@
         android:theme="@style/Theme.MiniSofascore"
         tools:targetApi="31">
         <activity
+            android:name=".TournamentDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EventDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".LeaguesActivity"
             android:exported="false" />
         <activity
