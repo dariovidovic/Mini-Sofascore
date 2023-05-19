@@ -67,17 +67,18 @@ class EventDetailActivity : AppCompatActivity() {
 
         val adapter = IncidentsAdapter()
         val linearLayoutManager =
-            LinearLayoutManager(this@EventDetailActivity, LinearLayoutManager.VERTICAL, true)
+            LinearLayoutManager(this@EventDetailActivity, LinearLayoutManager.VERTICAL, false)
         binding.matchDetailsRecyclerView.adapter = adapter
         binding.matchDetailsRecyclerView.layoutManager = linearLayoutManager
         incidentsViewModel.incidents.observe(this) {
-            adapter.setData(it, eventViewModel.event.value?.tournament?.sport?.name ?: "football")
+            adapter.setData(it.reversed(), eventViewModel.event.value?.tournament?.sport?.name ?: "football")
         }
 
 
 
         binding.backIcon.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
 
 

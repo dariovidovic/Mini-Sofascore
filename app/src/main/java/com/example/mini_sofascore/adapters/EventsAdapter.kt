@@ -12,6 +12,7 @@ import com.example.mini_sofascore.databinding.LeaguesItemBinding
 import com.example.mini_sofascore.databinding.MatchesItemBinding
 import com.example.mini_sofascore.databinding.TournamentItemBinding
 import com.example.mini_sofascore.utils.Helper
+import com.example.mini_sofascore.utils.MatchesViewHolder
 import java.lang.IllegalArgumentException
 
 private const val TYPE_TOURNAMENT = 0
@@ -23,6 +24,7 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var matches: MutableList<Any?> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+
         return if (viewType == TYPE_EVENT) {
             MatchesViewHolder(
                 MatchesItemBinding.inflate(
@@ -47,6 +49,7 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     false
                 )
             )
+
 
     }
 
@@ -76,12 +79,15 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
             league?.let {
                 val currentLeague = matches[position] as Tournament?
-                TournamentDetailsActivity.start(holder.itemView.context, currentLeague?.id?:1)
+                TournamentDetailsActivity.start(holder.itemView.context, currentLeague?.id ?: 1)
             }
 
             tournament?.let {
-                val currentTournament = matches[position+1] as Match?
-                TournamentDetailsActivity.start(holder.itemView.context, currentTournament?.tournament?.id?:1 )
+                val currentTournament = matches[position + 1] as Match?
+                TournamentDetailsActivity.start(
+                    holder.itemView.context,
+                    currentTournament?.tournament?.id ?: 1
+                )
             }
             match?.let {
                 EventDetailActivity.start(holder.itemView.context, match.id)
@@ -95,23 +101,6 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return matches.size
     }
 
-    class MatchesViewHolder(private val binding: MatchesItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(match: Match?) {
-            binding.homeTeamLogo.load(Helper.getTeamImageUrl(match?.homeTeam?.id))
-            binding.awayTeamLogo.load(Helper.getTeamImageUrl(match?.awayTeam?.id))
-            if (match?.status == "notstarted") {
-                binding.matchStatus.text = ""
-            } else binding.matchStatus.text = "FT"
-
-            binding.homeTeamScore.text = match?.homeScore?.total?.toString()
-            binding.awayTeamScore.text = match?.awayScore?.total?.toString()
-
-            binding.homeTeamName.text = match?.homeTeam?.name
-            binding.awayTeamName.text = match?.awayTeam?.name
-            binding.matchTime.text = match?.startDate?.subSequence(11, 16)
-        }
-    }
 
     class TournamentViewHolder(private val binding: TournamentItemBinding) :
         RecyclerView.ViewHolder(binding.root) {

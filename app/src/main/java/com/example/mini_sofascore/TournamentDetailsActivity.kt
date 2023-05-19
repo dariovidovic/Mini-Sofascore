@@ -40,6 +40,11 @@ class TournamentDetailsActivity : AppCompatActivity() {
         val adapter = TournamentViewPagerAdapter(supportFragmentManager, lifecycle, currentTournamentId?:1)
         binding.viewPager.adapter = adapter
 
+        binding.backIcon.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
+
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabsArray[position]
