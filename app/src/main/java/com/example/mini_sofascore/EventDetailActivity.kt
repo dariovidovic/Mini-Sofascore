@@ -51,6 +51,15 @@ class EventDetailActivity : AppCompatActivity() {
                 tournamentLogo.load(Helper.getTournamentImageUrl(eventViewModel.event.value?.tournament?.id))
                 homeTeamLogo.load(Helper.getTeamImageUrl(eventViewModel.event.value?.homeTeam?.id))
                 awayTeamLogo.load(Helper.getTeamImageUrl(eventViewModel.event.value?.awayTeam?.id))
+
+                homeTeamLogo.setOnClickListener {
+                    TeamDetailsActivity.start(this@EventDetailActivity, eventViewModel.event.value?.homeTeam?.id?:1)
+                }
+
+                awayTeamLogo.setOnClickListener {
+                    TeamDetailsActivity.start(this@EventDetailActivity, eventViewModel.event.value?.homeTeam?.id?:1)
+                }
+
                 homeTeamName.text = eventViewModel.event.value?.homeTeam?.name
                 awayTeamName.text = eventViewModel.event.value?.awayTeam?.name
                 homeTeamScore.text = eventViewModel.event.value?.homeScore?.total.toString()

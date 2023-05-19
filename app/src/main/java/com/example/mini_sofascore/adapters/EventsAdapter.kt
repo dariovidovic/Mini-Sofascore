@@ -1,5 +1,6 @@
 package com.example.mini_sofascore.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +20,7 @@ private const val TYPE_TOURNAMENT = 0
 private const val TYPE_EVENT = 1
 private const val TYPE_LEAGUES = 2
 
-class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class EventsAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var matches: MutableList<Any?> = arrayListOf()
 

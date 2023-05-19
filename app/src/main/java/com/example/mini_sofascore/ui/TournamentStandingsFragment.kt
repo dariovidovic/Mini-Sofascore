@@ -51,7 +51,6 @@ class TournamentStandingsFragment : Fragment() {
     }
 
     companion object {
-
         fun newInstance(currentTournamentId: Int): TournamentStandingsFragment {
             val fragment = TournamentStandingsFragment()
             val bundle = Bundle()

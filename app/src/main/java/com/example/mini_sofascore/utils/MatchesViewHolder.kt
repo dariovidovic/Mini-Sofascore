@@ -10,6 +10,7 @@ class MatchesViewHolder(private val binding: MatchesItemBinding) :
     fun bind(match: Match?) {
         binding.homeTeamLogo.load(Helper.getTeamImageUrl(match?.homeTeam?.id))
         binding.awayTeamLogo.load(Helper.getTeamImageUrl(match?.awayTeam?.id))
+
         if (match?.status == "notstarted") {
             binding.matchStatus.text = ""
         } else binding.matchStatus.text = "FT"
