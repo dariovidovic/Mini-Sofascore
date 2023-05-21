@@ -14,4 +14,6 @@
     <string name="team">Team</string>
     <string name="points">Points</string>
     <string name="ft">FT</string>
+    <string name="coach">Coach</string>
+    <string name="players">Players</string>
 </resources>

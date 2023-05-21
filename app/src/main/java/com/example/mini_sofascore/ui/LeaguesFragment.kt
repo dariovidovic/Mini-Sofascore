@@ -40,11 +40,6 @@ class LeaguesFragment : Fragment() {
         viewModel.tournaments.observe(viewLifecycleOwner) {
             eventsAdapter.setData(it)
         }
-
-
-
-
-
         return binding.root
     }
 

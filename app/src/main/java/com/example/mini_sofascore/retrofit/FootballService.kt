@@ -34,4 +34,10 @@ interface FootballService {
         @Path("span") span: String,
         @Path("page") page: Int
     ) : Response<List<Match>>
+
+    @GET("/team/{id}/players")
+    suspend fun getTeamPlayers(@Path("id") id:Int) : Response<List<Player>>
+
+    @GET("/team/{id}")
+    suspend fun getTeamDetails(@Path("id") id:Int) : Response<Team>
 }

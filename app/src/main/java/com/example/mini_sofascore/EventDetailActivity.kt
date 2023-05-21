@@ -57,7 +57,7 @@ class EventDetailActivity : AppCompatActivity() {
                 }
 
                 awayTeamLogo.setOnClickListener {
-                    TeamDetailsActivity.start(this@EventDetailActivity, eventViewModel.event.value?.homeTeam?.id?:1)
+                    TeamDetailsActivity.start(this@EventDetailActivity, eventViewModel.event.value?.awayTeam?.id?:1)
                 }
 
                 homeTeamName.text = eventViewModel.event.value?.homeTeam?.name

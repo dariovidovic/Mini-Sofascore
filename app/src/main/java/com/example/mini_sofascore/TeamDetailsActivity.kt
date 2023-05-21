@@ -6,11 +6,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
+import coil.load
 import com.example.mini_sofascore.adapters.TeamDetailsViewPagerAdapter
 import com.example.mini_sofascore.databinding.ActivityTeamDetailsBinding
+import com.example.mini_sofascore.utils.Helper
+import com.example.mini_sofascore.viewmodels.TeamViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
-
+private lateinit var viewModel: TeamViewModel
 
 class TeamDetailsActivity : AppCompatActivity() {
 
@@ -21,8 +25,18 @@ class TeamDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityTeamDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        viewModel = ViewModelProvider(this)[TeamViewModel::class.java]
 
         val currentTeamId = intent.extras?.getInt(TEAM_ID)
+        viewModel.getTeamDetails(currentTeamId?:1)
+        viewModel.teamDetails.observe(this){
+            binding.run {
+                teamLogo.load(Helper.getTeamImageUrl(currentTeamId))
+                teamName.text = viewModel.teamDetails.value?.name
+                countryName.text = viewModel.teamDetails.value?.country?.name
+            }
+        }
+
         val adapter =
             TeamDetailsViewPagerAdapter(supportFragmentManager, lifecycle, currentTeamId ?: 1)
         binding.viewPager.adapter = adapter
