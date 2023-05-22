@@ -29,18 +29,19 @@
                 tools:ignore="ContentDescription" />
 
         </androidx.appcompat.widget.Toolbar>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_primary_default"
+            app:tabIconTint="@color/surface_surface_1"
+            app:tabSelectedTextColor="@color/surface_surface_1"
+            app:tabTextAppearance="@style/Body"
+            app:tabTextColor="@color/surface_surface_1" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/color_primary_default"
-        app:tabIconTint="@color/surface_surface_1"
-        app:tabSelectedTextColor="@color/surface_surface_1"
-        app:tabTextAppearance="@style/Body"
-        app:tabTextColor="@color/surface_surface_1" />
+
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
