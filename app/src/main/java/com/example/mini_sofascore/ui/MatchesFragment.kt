@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mini_sofascore.adapters.DatesAdapter
@@ -29,7 +30,10 @@ class MatchesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = this.arguments
-        val slug = bundle?.getString("sportSlug")
+        val slug = bundle?.getString(SPORT_SLUG)
+
+        Toast.makeText(context, slug, Toast.LENGTH_SHORT).show()
+
         if (slug != null) {
             viewModel.getMatchesByDate(slug, "2023-04-15")
         }
@@ -41,7 +45,7 @@ class MatchesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val bundle = this.arguments
-        val slug = bundle?.getString("string")
+        val slug = bundle?.getString(SPORT_SLUG)
         _binding = FragmentMatchesBinding.inflate(inflater, container, false)
 
         val eventsAdapter = EventsAdapter()
@@ -70,10 +74,13 @@ class MatchesFragment : Fragment() {
     }
 
     companion object {
+
+        private const val SPORT_SLUG = "sportSlug"
+
         fun newInstance(sportSlug: String): MatchesFragment {
             val fragment = MatchesFragment()
             val bundle = Bundle()
-            bundle.putString("sportSlug", sportSlug)
+            bundle.putString(SPORT_SLUG, sportSlug)
             fragment.arguments = bundle
             return fragment
         }
