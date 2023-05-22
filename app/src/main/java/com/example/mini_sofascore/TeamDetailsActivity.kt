@@ -14,6 +14,7 @@ import com.example.mini_sofascore.utils.Helper
 import com.example.mini_sofascore.viewmodels.TeamViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+
 private lateinit var viewModel: TeamViewModel
 
 class TeamDetailsActivity : AppCompatActivity() {
@@ -28,8 +29,10 @@ class TeamDetailsActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[TeamViewModel::class.java]
 
         val currentTeamId = intent.extras?.getInt(TEAM_ID)
-        viewModel.getTeamDetails(currentTeamId?:1)
-        viewModel.teamDetails.observe(this){
+        val currentTeamSport = intent.extras?.getString(TEAM_SPORT)
+
+        viewModel.getTeamDetails(currentTeamId ?: 1)
+        viewModel.teamDetails.observe(this) {
             binding.run {
                 teamLogo.load(Helper.getTeamImageUrl(currentTeamId))
                 teamName.text = viewModel.teamDetails.value?.name
@@ -38,11 +41,16 @@ class TeamDetailsActivity : AppCompatActivity() {
         }
 
         val adapter =
-            TeamDetailsViewPagerAdapter(supportFragmentManager, lifecycle, currentTeamId ?: 1)
+            TeamDetailsViewPagerAdapter(
+                supportFragmentManager,
+                lifecycle,
+                currentTeamId ?: 1,
+                currentTeamSport ?: ""
+            )
         binding.viewPager.adapter = adapter
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager) {
-            tab, position -> tab.text = tabsArray[position]
+        TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            tab.text = tabsArray[position]
         }.attach()
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -72,9 +80,11 @@ class TeamDetailsActivity : AppCompatActivity() {
 
     companion object {
         private const val TEAM_ID = "teamId"
-        fun start(context: Context, teamId: Int) {
+        private const val TEAM_SPORT = "teamSport"
+        fun start(context: Context, teamId: Int, teamSport: String) {
             Intent(context, TeamDetailsActivity::class.java).apply {
                 putExtra(TEAM_ID, teamId)
+                putExtra(TEAM_SPORT, teamSport)
             }.also {
                 context.startActivity(it)
             }

@@ -17,10 +17,10 @@ class LeaguesViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifec
 
     override fun createFragment(position: Int): Fragment {
         when (position) {
-            0 -> return LeaguesFragment.newInstance("football")
-            1 -> return LeaguesFragment.newInstance("basketball")
-            2 -> return LeaguesFragment.newInstance("american-football")
+            0 -> return LeaguesFragment.newInstance("Football")
+            1 -> return LeaguesFragment.newInstance("Basketball")
+            2 -> return LeaguesFragment.newInstance("American-football")
         }
-        return LeaguesFragment.newInstance("football")
+        return LeaguesFragment.newInstance("Football")
     }
 }

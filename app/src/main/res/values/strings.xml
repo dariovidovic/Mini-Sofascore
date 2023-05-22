@@ -9,11 +9,16 @@
     <string name="ladder">#</string>
     <string name="matches_played">P</string>
     <string name="wins">W</string>
+    <string name="draws">D</string>
     <string name="losses">L</string>
     <string name="difference">DIFF</string>
+    <string name="goals">Goals</string>
     <string name="team">Team</string>
-    <string name="points">Points</string>
+    <string name="points">PTS</string>
     <string name="ft">FT</string>
+    <string name="pct">PCT</string>
+    <string name="gb">GB</string>
+    <string name="str">Str</string>
     <string name="coach">Coach</string>
     <string name="players">Players</string>
     <string name="team_info">Team info</string>

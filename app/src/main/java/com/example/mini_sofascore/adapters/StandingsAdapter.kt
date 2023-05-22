@@ -8,14 +8,12 @@ import com.example.mini_sofascore.databinding.AmericanFootballStandingItemBindin
 import com.example.mini_sofascore.databinding.BasketballStandingItemBinding
 import com.example.mini_sofascore.databinding.FootballStandingItemBinding
 
-
 class StandingsAdapter(private val sportName: String) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var tournamentStandings: MutableList<TeamStanding?> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
         when (sportName) {
             "Football" -> {
                 return FootballStandingViewHolder(
@@ -23,6 +21,15 @@ class StandingsAdapter(private val sportName: String) :
                         LayoutInflater.from(
                             parent.context
                         ), parent, false
+                    )
+                )
+            }
+            "Basketball" -> {
+                return BasketballStandingViewHolder(
+                    BasketballStandingItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
                     )
                 )
             }
@@ -40,10 +47,10 @@ class StandingsAdapter(private val sportName: String) :
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(sportName) {
+        when (sportName) {
             "Football" -> (holder as FootballStandingViewHolder).bind(tournamentStandings[position] as TeamStanding)
             "Basketball" -> (holder as BasketballStandingViewHolder).bind(tournamentStandings[position] as TeamStanding)
-             else -> (holder as AmericanFootballStandingViewHolder).bind(
+            else -> (holder as AmericanFootballStandingViewHolder).bind(
                 tournamentStandings[position] as TeamStanding
             )
         }
@@ -70,7 +77,8 @@ class StandingsAdapter(private val sportName: String) :
                 teamMatchesWon.text = tournamentStandings.wins.toString()
                 teamMatchesDrew.text = tournamentStandings.draws.toString()
                 teamMatchesLost.text = tournamentStandings.losses.toString()
-                teamTotalGoals.text = "${tournamentStandings.scoresFor}:${tournamentStandings.scoresAgainst}"
+                teamTotalGoals.text =
+                    "${tournamentStandings.scoresFor}:${tournamentStandings.scoresAgainst}"
                 teamTotalPoints.text = tournamentStandings.points.toString()
             }
         }

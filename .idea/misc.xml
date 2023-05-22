@@ -18,9 +18,13 @@
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_team_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_tournament_details.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/american_football_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/american_football_standing_header.xml" value="0.4" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/american_football_standing_item.xml" value="0.20572916666666666" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/basketball_standing_header.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/basketball_standing_item.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/date_item.xml" value="0.4" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/football_incident_goal_item.xml" value="0.4" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/football_standing_header.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/football_standing_item.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/foul_item.xml" value="0.4" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/fragment_american_football.xml" value="0.175" />
@@ -30,7 +34,9 @@
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/fragment_matches.xml" value="0.1515625" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/fragment_sport.xml" value="0.1890625" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/fragment_team_details.xml" value="0.2" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/fragment_team_matches.xml" value="0.1828125" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/fragment_team_squad.xml" value="0.25416666666666665" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/fragment_team_standing.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/fragment_tournament_matches.xml" value="0.1828125" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/fragment_tournament_standings.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/incident_item.xml" value="0.4" />
@@ -39,6 +45,7 @@
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/period_item.xml" value="0.1828125" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/player_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/score_item.xml" value="0.536" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/spinner.xml" value="0.1828125" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/sport_period_item.xml" value="0.2" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/tournament_grid_item.xml" value="0.23229166666666667" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/tournament_item.xml" value="0.4" />

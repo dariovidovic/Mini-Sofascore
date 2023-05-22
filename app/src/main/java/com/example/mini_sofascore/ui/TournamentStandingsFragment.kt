@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mini_sofascore.R
 import com.example.mini_sofascore.adapters.StandingsAdapter
 import com.example.mini_sofascore.databinding.FragmentTournamentStandingsBinding
 import com.example.mini_sofascore.viewmodels.TournamentViewModel
@@ -38,7 +40,21 @@ class TournamentStandingsFragment : Fragment() {
         binding.standingsRecyclerView.layoutManager = linearLayoutManager
         binding.standingsRecyclerView.adapter = adapter
 
-
+        val view: View
+        when(sportName){
+            "Football" -> {
+                view = layoutInflater.inflate(R.layout.football_standing_header, null)
+                binding.headerLayout.addView(view)
+            }
+            "American football" -> {
+                view= layoutInflater.inflate(R.layout.american_football_standing_header, null)
+                binding.headerLayout.addView(view)
+            }
+            else -> {
+                view = layoutInflater.inflate(R.layout.basketball_standing_header, null)
+                binding.headerLayout.addView(view)
+            }
+        }
 
         viewModel.tournamentStandings.observe(viewLifecycleOwner) {
             if (sportName == "Football")
