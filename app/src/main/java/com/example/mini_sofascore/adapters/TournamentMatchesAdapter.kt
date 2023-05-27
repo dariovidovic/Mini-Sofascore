@@ -10,7 +10,7 @@ import com.example.mini_sofascore.databinding.MatchesItemBinding
 import com.example.mini_sofascore.utils.MatchesViewHolder
 
 
-class TournamentMatchesAdapter() :
+class TournamentMatchesAdapter :
     PagingDataAdapter<Match, MatchesViewHolder>(MatchesDiffCallback()) {
 
     class MatchesDiffCallback : DiffUtil.ItemCallback<Match>() {

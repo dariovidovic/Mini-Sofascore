@@ -1,10 +1,12 @@
 package com.example.mini_sofascore.adapters
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_sofascore.R
 import com.example.mini_sofascore.data.Incidents

@@ -22,8 +22,8 @@
     <string name="coach">Coach</string>
     <string name="players">Players</string>
     <string name="team_info">Team info</string>
-    <string name="total_players">Total players</string>
-    <string name="foreign_players">Foreign players</string>
+    <string name="total_players">Total Players</string>
+    <string name="foreign_players">Foreign Players</string>
     <string name="coach_name">Coach: %s</string>
     <string name="tournaments">Tournaments</string>
     <string name="venue">Venue</string>

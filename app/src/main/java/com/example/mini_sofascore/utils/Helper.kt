@@ -34,7 +34,7 @@ object Helper {
                 return code
             }
         }
-        return ""
+        return "HR"
     }
 
 

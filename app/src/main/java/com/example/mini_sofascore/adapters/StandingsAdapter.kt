@@ -8,10 +8,11 @@ import com.example.mini_sofascore.databinding.AmericanFootballStandingItemBindin
 import com.example.mini_sofascore.databinding.BasketballStandingItemBinding
 import com.example.mini_sofascore.databinding.FootballStandingItemBinding
 
-class StandingsAdapter(private val sportName: String) :
+class StandingsAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var tournamentStandings: MutableList<TeamStanding?> = arrayListOf()
+    private var sportName : String? = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (sportName) {
@@ -119,6 +120,11 @@ class StandingsAdapter(private val sportName: String) :
             }
         }
 
+    }
+
+    fun setSportName(sportName: String?){
+        this.sportName = sportName
+        notifyDataSetChanged()
     }
 
 

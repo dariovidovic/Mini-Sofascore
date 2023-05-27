@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.mini_sofascore.ui.TeamDetailsFragment
+import com.example.mini_sofascore.ui.TeamMatchesFragment
 import com.example.mini_sofascore.ui.TeamSquadFragment
 import com.example.mini_sofascore.ui.TeamStandingFragment
 
@@ -24,7 +25,7 @@ class TeamDetailsViewPagerAdapter(
     override fun createFragment(position: Int): Fragment {
         when (position) {
             0 -> return TeamDetailsFragment.newInstance(teamId)
-            1 -> return TeamDetailsFragment.newInstance(teamId)
+            1 -> return TeamMatchesFragment.newInstance(teamId)
             2 -> return TeamStandingFragment.newInstance(teamId, teamSport)
         }
         return TeamSquadFragment.newInstance(teamId)

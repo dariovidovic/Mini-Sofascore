@@ -16,8 +16,10 @@ import com.example.mini_sofascore.adapters.StandingsAdapter
 import com.example.mini_sofascore.data.Tournament
 import com.example.mini_sofascore.databinding.FragmentTeamStandingBinding
 import com.example.mini_sofascore.utils.Helper
+import com.example.mini_sofascore.utils.Sport
 import com.example.mini_sofascore.viewmodels.TeamViewModel
 import com.example.mini_sofascore.viewmodels.TournamentViewModel
+import java.lang.IllegalArgumentException
 
 
 class TeamStandingFragment : Fragment() {
@@ -41,60 +43,75 @@ class TeamStandingFragment : Fragment() {
         val sportName = bundle?.getString(TEAM_SPORT)
         binding = FragmentTeamStandingBinding.inflate(inflater, container, false)
 
-        teamViewModel.teamTournaments.observe(viewLifecycleOwner){
-            val spinnerAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, it)
+        teamViewModel.teamTournaments.observe(viewLifecycleOwner) {
+            val spinnerAdapter =
+                ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, it)
             binding.teamLeaguesSpinner.adapter = spinnerAdapter
         }
 
-        val standingsAdapter = StandingsAdapter(sportName ?: "")
+        val standingsAdapter = StandingsAdapter()
+        standingsAdapter.setSportName(sportName)
         val linearLayoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.teamStandingsRecyclerView.layoutManager = linearLayoutManager
         binding.teamStandingsRecyclerView.adapter = standingsAdapter
 
-        binding.teamLeaguesSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            @SuppressLint("InflateParams")
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                val tournament : Tournament = p0?.selectedItem as Tournament
-                binding.leagueLogo.load(Helper.getTournamentImageUrl(tournament.id))
-                val view: View
-                when(sportName){
-                    "Football" -> {
-                        view = layoutInflater.inflate(R.layout.football_standing_header, null)
-                        binding.headerLayout.addView(view)
-                    }
-                    "American football" -> {
-                        view= layoutInflater.inflate(R.layout.american_football_standing_header, null)
-                        binding.headerLayout.addView(view)
-                    }
-                    else -> {
-                        view = layoutInflater.inflate(R.layout.basketball_standing_header, null)
-                        binding.headerLayout.addView(view)
+        binding.teamLeaguesSpinner.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("InflateParams")
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                    val tournament: Tournament = p0?.selectedItem as Tournament
+                    binding.leagueLogo.load(Helper.getTournamentImageUrl(tournament.id))
+
+                    tournamentViewModel.getTournamentStandingsById(tournament.id)
+
+                    tournamentViewModel.tournamentStandings.observe(viewLifecycleOwner) {
+                        val view: View
+                        when (sportName) {
+                            Sport.FOOTBALL -> {
+                                view =
+                                    layoutInflater.inflate(R.layout.football_standing_header, null)
+                                binding.headerLayout.addView(view)
+                                it[2]?.sortedStandingsRows?.let { standings ->
+                                    standingsAdapter.setData(
+                                        standings
+                                    )
+                                }
+                            }
+                            Sport.BASKETBALL -> {
+                                view = layoutInflater.inflate(
+                                    R.layout.basketball_standing_header,
+                                    null
+                                )
+                                binding.headerLayout.addView(view)
+                                it[0]?.sortedStandingsRows?.let { standings ->
+                                    standingsAdapter.setData(
+                                        standings
+                                    )
+                                }
+                            }
+                            Sport.AMERICAN_FOOTBALL -> {
+                                view = layoutInflater.inflate(
+                                    R.layout.american_football_standing_header,
+                                    null
+                                )
+                                binding.headerLayout.addView(view)
+                                it[0]?.sortedStandingsRows?.let { standings ->
+                                    standingsAdapter.setData(
+                                        standings
+                                    )
+                                }
+                            }
+                            else -> throw IllegalArgumentException()
+                        }
+
                     }
                 }
 
-
-                tournamentViewModel.getTournamentStandingsById(tournament.id)
-
-                tournamentViewModel.tournamentStandings.observe(viewLifecycleOwner){
-                    if (sportName == "Football")
-                        it[2]?.sortedStandingsRows?.let { it1 -> standingsAdapter.setData(it1) }
-                    else
-                        it[0]?.sortedStandingsRows?.let { it1 -> standingsAdapter.setData(it1) }
+                override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
+
             }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-
-        }
-
-
-
-
-
-
-
 
         return binding.root
     }
