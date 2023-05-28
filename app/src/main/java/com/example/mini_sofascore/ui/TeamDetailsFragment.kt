@@ -21,10 +21,7 @@ class TeamDetailsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = this.arguments
         val teamId = bundle?.getInt(TEAM_ID)
-        viewModel.getTeamDetails(teamId ?: 0)
-        viewModel.getTeamPlayers(teamId ?: 0)
-        viewModel.getTeamTournaments(teamId ?: 0)
-        viewModel.getTeamNextMatch(teamId ?: 0)
+        viewModel.getTeamData(teamId ?: 0)
         super.onCreate(savedInstanceState)
 
     }
@@ -34,40 +31,31 @@ class TeamDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentTeamDetailsBinding.inflate(inflater, container, false)
-        var countryName = ""
-        viewModel.teamDetails.observe(viewLifecycleOwner) {
-            binding.coachName.text = resources.getString(R.string.coach_name, it?.managerName)
-            binding.teamStadium.text = it?.venue
-            countryName = it?.country?.name ?: ""
-        }
 
         val gridAdapter = TournamentGridAdapter(requireContext())
         val eventsAdapter = EventsAdapter()
+
         val linearLayoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+
         binding.nextTeamMatchRecyclerView.layoutManager = linearLayoutManager
         binding.nextTeamMatchRecyclerView.adapter = eventsAdapter
-
         binding.teamTournamentsGrid.adapter = gridAdapter
-        viewModel.teamTournaments.observe(viewLifecycleOwner) {
-            gridAdapter.setData(it)
-        }
 
-        viewModel.teamNextMatches.observe(viewLifecycleOwner) {
-            val nextMatchTournament = it[0]?.tournament?.name
-            val nextMatch = it[0]
+        viewModel.teamInfo.observe(viewLifecycleOwner) {
+            it?.tournaments?.let { data -> gridAdapter.setData(data) }
+            val nextMatchTournament = it?.nextMatches?.get(0)?.tournament?.name
+            val nextMatch = it?.nextMatches?.get(0)
             val match = listOf(nextMatchTournament) + nextMatch
             eventsAdapter.setData(match)
-        }
 
-        viewModel.players.observe(viewLifecycleOwner) {
             binding.run {
-                foreignPlayersChart.max = it.size
-                foreignPlayersChart.progress =
-                    it.count { player -> player?.country?.name != countryName }
-                teamTotalPlayers.text = it.size.toString()
-                teamForeignPlayers.text =
-                    it.count { player -> player?.country?.name != countryName }.toString()
+                coachName.text = resources.getString(R.string.coach_name, it?.details?.managerName)
+                teamStadium.text = it?.details?.venue
+                foreignPlayersChart.max = it?.players?.size ?: 20
+                foreignPlayersChart.progress = viewModel.foreignPlayersCount
+                teamTotalPlayers.text = it?.players?.size?.toString()
+                teamForeignPlayers.text = viewModel.foreignPlayersCount.toString()
             }
         }
 
@@ -86,4 +74,5 @@ class TeamDetailsFragment : Fragment() {
             return fragment
         }
     }
+
 }

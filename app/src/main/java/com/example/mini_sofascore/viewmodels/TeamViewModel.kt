@@ -1,14 +1,10 @@
 package com.example.mini_sofascore.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.mini_sofascore.data.Match
-import com.example.mini_sofascore.data.Player
-import com.example.mini_sofascore.data.Team
-import com.example.mini_sofascore.data.Tournament
+import android.util.Log
+import androidx.lifecycle.*
+import com.example.mini_sofascore.data.*
 import com.example.mini_sofascore.retrofit.RetrofitHelper
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 class TeamViewModel : ViewModel() {
@@ -17,13 +13,17 @@ class TeamViewModel : ViewModel() {
     val players: LiveData<List<Player?>> = _players
 
     private val _teamDetails = MutableLiveData<Team?>()
-    val teamDetails : LiveData<Team?> = _teamDetails
+    val teamDetails: LiveData<Team?> = _teamDetails
 
     private val _teamTournaments = MutableLiveData<List<Tournament?>>()
-    val teamTournaments : LiveData<List<Tournament?>> = _teamTournaments
+    val teamTournaments: LiveData<List<Tournament?>> = _teamTournaments
 
-    private val _teamNextMatches = MutableLiveData<List<Match?>>()
-    val teamNextMatches : LiveData<List<Match?>> = _teamNextMatches
+    private val _teamInfo = MutableLiveData<TeamData?>()
+    val teamInfo: LiveData<TeamData?> = _teamInfo
+
+    var foreignPlayersCount: Int = 1
+    var countryName: String = ""
+
 
     fun getTeamPlayers(id: Int) {
         viewModelScope.launch {
@@ -34,7 +34,7 @@ class TeamViewModel : ViewModel() {
         }
     }
 
-    fun getTeamDetails(id: Int){
+    fun getTeamDetails(id: Int) {
         viewModelScope.launch {
             val teamDetails = RetrofitHelper.getRetrofitInstance().getTeamDetails(id).body()
             teamDetails?.also {
@@ -43,7 +43,7 @@ class TeamViewModel : ViewModel() {
         }
     }
 
-    fun getTeamTournaments(id: Int){
+    fun getTeamTournaments(id: Int) {
         viewModelScope.launch {
             val teamTournaments = RetrofitHelper.getRetrofitInstance().getTeamTournaments(id).body()
             teamTournaments?.also {
@@ -52,13 +52,44 @@ class TeamViewModel : ViewModel() {
         }
     }
 
-    fun getTeamNextMatch(id: Int){
+
+    fun getTeamData(id: Int) {
+
         viewModelScope.launch {
-            val teamNextMatches = RetrofitHelper.getRetrofitInstance().getTeamMatches(id, "next", 0).body()
-            teamNextMatches?.also {
-                _teamNextMatches.postValue(it)
+
+            val teamPlayers = async {
+                RetrofitHelper.getRetrofitInstance().getTeamPlayers(id).body()
             }
+
+            val teamDetails = async {
+                RetrofitHelper.getRetrofitInstance().getTeamDetails(id).body()
+            }
+
+            val teamTournaments = async {
+                RetrofitHelper.getRetrofitInstance().getTeamTournaments(id).body()
+            }
+
+            val teamNextMatch = async {
+                RetrofitHelper.getRetrofitInstance().getTeamMatches(id, "next", 0).body()
+            }
+
+
+            val players = teamPlayers.await()
+            val details = teamDetails.await()
+            val tournaments = teamTournaments.await()
+            val nextMatch = teamNextMatch.await()
+
+            countryName = details?.country?.name ?: "Unknown"
+
+            foreignPlayersCount =
+                players?.count { players -> players.country.name != countryName } ?: 0
+
+
+            val teamData = TeamData(players, details, tournaments, nextMatch)
+            _teamInfo.postValue(teamData)
+
         }
+
     }
 
 }
