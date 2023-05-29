@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/score_constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="56dp">
 
@@ -20,11 +21,12 @@
     <TextView
         android:id="@+id/incident_time"
         style="@style/Micro"
-        android:layout_width="40dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
+        android:minWidth="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/incident_icon"
@@ -33,11 +35,11 @@
     <TextView
         android:id="@+id/incident_player_name"
         style="@style/Body"
-        android:textColor="#121212"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
+        android:textColor="#121212"
         app:layout_constraintStart_toEndOf="@id/away_team_score"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Cristiano Ronaldo" />
@@ -45,11 +47,12 @@
     <TextView
         android:id="@+id/home_team_score"
         style="@style/Headline1"
-        android:layout_width="32dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="14dp"
         android:gravity="end"
+        android:minWidth="32dp"
         android:textColor="#121212"
         app:layout_constraintStart_toEndOf="@id/incident_icon"
         app:layout_constraintTop_toTopOf="parent"
@@ -62,6 +65,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginTop="14dp"
+        android:gravity="start"
+        android:minWidth="32dp"
         android:textColor="#121212"
         app:layout_constraintStart_toEndOf="@id/dash"
         app:layout_constraintTop_toTopOf="parent"
@@ -82,6 +87,7 @@
         tools:text="-" />
 
     <View
+        android:id="@+id/score_divider"
         android:layout_width="1dp"
         android:layout_height="match_parent"
         android:layout_marginStart="15dp"

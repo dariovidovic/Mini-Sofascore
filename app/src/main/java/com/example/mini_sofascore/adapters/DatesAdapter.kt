@@ -1,22 +1,19 @@
 package com.example.mini_sofascore.adapters
 
-import android.util.Log
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_sofascore.databinding.DateItemBinding
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 class DatesAdapter(private val dates: List<String>, private val onClickListener: OnClickListener) :
     RecyclerView.Adapter<DatesAdapter.DateViewHolder>() {
 
 
-
     class DateViewHolder(private val binding: DateItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SimpleDateFormat")
         fun bind(date: String) {
 
             val stringFormat = SimpleDateFormat("yyyy-MM-dd")
@@ -25,8 +22,8 @@ class DatesAdapter(private val dates: List<String>, private val onClickListener:
 
             val data = stringFormat.parse(date)
 
-            binding.day.text = dayFormat.format(data)
-            binding.date.text = dateFormat.format(data)
+            binding.day.text = data?.let { dayFormat.format(it) }
+            binding.date.text = data?.let { dateFormat.format(it) }
         }
     }
 
