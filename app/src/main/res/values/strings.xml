@@ -31,4 +31,7 @@
     <string name="stadium">Stadium</string>
     <string name="gb_mock">16.0</string>
     <string name="str_mock">4</string>
+    <string name="nationality">Nationality</string>
+    <string name="position">Position</string>
+    <string name="matches">Matches</string>
 </resources>
