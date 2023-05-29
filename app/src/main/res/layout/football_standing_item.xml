@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="48dp">
+    android:layout_height="wrap_content">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/position_layout"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-        android:background="@color/color_secondary_default"
+        android:background="@drawable/position_shape"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,16 +22,13 @@
             style="@style/Tabular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:minWidth="16dp"
+            android:textColor="#121212"
             tools:text="1" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/team_name"
@@ -40,6 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:minWidth="104dp"
+        android:textColor="#121212"
         app:layout_constraintStart_toEndOf="@id/position_layout"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Atl.Madrid" />
@@ -49,8 +49,11 @@
         style="@style/Tabular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:minWidth="24dp"
+        android:textColor="#121212"
         app:layout_constraintEnd_toStartOf="@id/team_matches_won"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="15" />
@@ -60,8 +63,11 @@
         style="@style/Tabular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:minWidth="24dp"
+        android:textColor="#121212"
         app:layout_constraintEnd_toStartOf="@id/team_matches_drew"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="12" />
@@ -71,8 +77,11 @@
         style="@style/Tabular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:minWidth="24dp"
+        android:textColor="#121212"
         app:layout_constraintEnd_toStartOf="@id/team_matches_lost"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="2" />
@@ -82,8 +91,11 @@
         style="@style/Tabular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:minWidth="24dp"
+        android:textColor="#121212"
         app:layout_constraintEnd_toStartOf="@id/team_total_goals"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1" />
@@ -93,8 +105,11 @@
         style="@style/Tabular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:minWidth="40dp"
+        android:textColor="#121212"
         app:layout_constraintEnd_toStartOf="@id/team_total_points"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="34:6" />
@@ -106,8 +121,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:minWidth="24dp"
+        android:textColor="#121212"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

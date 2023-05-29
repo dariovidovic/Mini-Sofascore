@@ -29,4 +29,6 @@
     <string name="venue">Venue</string>
     <string name="next_match">Next match</string>
     <string name="stadium">Stadium</string>
+    <string name="gb_mock">16.0</string>
+    <string name="str_mock">4</string>
 </resources>
