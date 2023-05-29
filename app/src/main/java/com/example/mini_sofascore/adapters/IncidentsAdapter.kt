@@ -1,14 +1,21 @@
 package com.example.mini_sofascore.adapters
 
 import android.annotation.SuppressLint
+import android.content.res.Resources
+import android.util.TypedValue
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mini_sofascore.R
 import com.example.mini_sofascore.data.Incidents
-import com.example.mini_sofascore.databinding.*
+import com.example.mini_sofascore.databinding.FoulItemBinding
+import com.example.mini_sofascore.databinding.PeriodItemBinding
+import com.example.mini_sofascore.databinding.ScoreItemBinding
+import com.example.mini_sofascore.utils.Helper
+import com.example.mini_sofascore.utils.Sport
 
 
 private const val TYPE_FOUL = 0
@@ -88,21 +95,47 @@ class IncidentsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 homeTeamScore.text = incident.homeScore.toString()
                 awayTeamScore.text = incident.awayScore.toString()
                 when (sport) {
-                    "Football" -> {
+                    Sport.FOOTBALL -> {
                         incidentTime.text = incident.time.toString()
                         incidentPlayerName.text = incident.player.name
                         incidentIcon.setImageResource(R.drawable.ic_icon_goal)
                     }
-                    "Basketball" -> {
-                        incidentPlayerName.text = incident.time.toString()
-                        incidentPlayerName.gravity = Gravity.CENTER
+                    Sport.BASKETBALL -> {
+                        incidentPlayerName.visibility = View.GONE
+                        val constraintSet = ConstraintSet()
+                        constraintSet.clone(binding.scoreConstraintLayout)
+                        constraintSet.connect(
+                            incidentTime.id,
+                            ConstraintSet.START,
+                            R.id.away_team_score,
+                            ConstraintSet.START,
+                            Helper.dpToPx(itemView.context,28)
+                        )
+                        constraintSet.connect(
+                            incidentTime.id,
+                            ConstraintSet.TOP,
+                            R.id.score_constraint_layout,
+                            ConstraintSet.TOP,
+                            Helper.dpToPx(itemView.context,12)
+                        )
+
+
+                        constraintSet.applyTo(binding.scoreConstraintLayout)
+                        incidentTime.text = incident.time.toString()
+
+                        /*val iconParams = incidentIcon.layoutParams as ViewGroup.MarginLayoutParams
+                        iconParams.topMargin = Helper.dpToPx(itemView.context,8)
+                        incidentIcon.layoutParams = iconParams*/
+
+
+
                         when (incident.goalType) {
                             "onepoint" -> incidentIcon.setImageResource(R.drawable.ic_one_point)
                             "twopoint" -> incidentIcon.setImageResource(R.drawable.ic_two_points)
                             "threepoint" -> incidentIcon.setImageResource(R.drawable.ic_three_points)
                         }
                     }
-                    "American football" -> {
+                    Sport.AMERICAN_FOOTBALL -> {
                         incidentPlayerName.text = incident.player.name
                         incidentTime.text = incident.time.toString()
                         when (incident.goalType) {

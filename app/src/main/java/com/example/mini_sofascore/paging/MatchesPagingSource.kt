@@ -1,12 +1,14 @@
 package com.example.mini_sofascore.paging
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.mini_sofascore.data.Match
 import com.example.mini_sofascore.retrofit.RetrofitHelper
+import com.example.mini_sofascore.utils.Type
 import retrofit2.Response
 
-class MatchesPagingSource(private val tournamentId: Int) :
+class MatchesPagingSource(private val id: Int, private val type: String) :
     PagingSource<Int, Match>() {
     override fun getRefreshKey(state: PagingState<Int, Match>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
@@ -19,17 +21,44 @@ class MatchesPagingSource(private val tournamentId: Int) :
         val pageIndex = params.key ?: 0
         val prevKey = pageIndex - 1
         val nextKey = pageIndex + 1
-        var matchesResponse: Response<List<Match>>
-        if(prevKey<0){
-            matchesResponse =
-                RetrofitHelper.getRetrofitInstance().getTournamentMatches(id = tournamentId, span = "last", page = -pageIndex)
-        }
-        else{
-            matchesResponse =
-                RetrofitHelper.getRetrofitInstance().getTournamentMatches(id = tournamentId, span = "next", page = pageIndex)
+        val matchesResponse: Response<List<Match>>
+
+        Log.d("prevKey", prevKey.toString())
+        Log.d("nextKey", nextKey.toString())
+
+        when (type) {
+            Type.TOURNAMENT -> {
+                matchesResponse = if (prevKey < 0) {
+                    RetrofitHelper.getRetrofitInstance().getTournamentMatches(
+                        id = id,
+                        span = "last",
+                        page = -pageIndex
+                    )
+                } else {
+                    RetrofitHelper.getRetrofitInstance().getTournamentMatches(
+                        id = id,
+                        span = "next",
+                        page = pageIndex
+                    )
+                }
+            }
+            Type.TEAM -> {
+                matchesResponse = if (prevKey < 0) {
+                    RetrofitHelper.getRetrofitInstance()
+                        .getTeamMatches(id = id, span = "last", page = -pageIndex)
+                } else {
+                    RetrofitHelper.getRetrofitInstance()
+                        .getTeamMatches(id = id, span = "next", page = pageIndex)
+                }
+            }
+
+            else -> throw IllegalArgumentException()
         }
 
-        val matches = matchesResponse.body()?: arrayListOf()
+        val matches = matchesResponse.body() ?: arrayListOf()
+        if (matches.isEmpty())
+            return LoadResult.Page(data = matches, prevKey = null, nextKey = null)
+
         return LoadResult.Page(data = matches, prevKey = prevKey, nextKey = nextKey)
 
     }

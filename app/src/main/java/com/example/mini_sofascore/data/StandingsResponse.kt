@@ -20,4 +20,10 @@ data class TeamStanding(
     val percentage: Float
 )
 
-data class Team(val id: Int, val name: String)
+data class Team(
+    val id: Int,
+    val name: String,
+    val country: Country,
+    val managerName: String,
+    val venue: String
+)

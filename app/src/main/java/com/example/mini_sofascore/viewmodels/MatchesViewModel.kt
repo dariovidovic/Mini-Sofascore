@@ -4,9 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
 import com.example.mini_sofascore.data.Match
 import com.example.mini_sofascore.data.Tournament
+import com.example.mini_sofascore.paging.MatchesPagingSource
 import com.example.mini_sofascore.retrofit.RetrofitHelper
+import com.example.mini_sofascore.utils.Type
 import kotlinx.coroutines.launch
 
 class MatchesViewModel : ViewModel() {
@@ -15,6 +20,13 @@ class MatchesViewModel : ViewModel() {
     val matches: LiveData<List<Match?>> = _matches
     private val _tournaments = MutableLiveData<List<Tournament?>>()
     val tournaments: LiveData<List<Tournament?>> = _tournaments
+
+    var teamId: Int = 1
+
+    val teamMatches = Pager(config = PagingConfig(
+        pageSize = 10, enablePlaceholders = false
+    ), 0, pagingSourceFactory = { MatchesPagingSource(teamId, Type.TEAM) }
+    ).liveData
 
 
     fun getMatchesByDate(slug: String, date: String) {

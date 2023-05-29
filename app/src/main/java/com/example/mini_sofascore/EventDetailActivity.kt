@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
@@ -37,7 +36,6 @@ class EventDetailActivity : AppCompatActivity() {
         eventViewModel.getEventById(currentMatchId ?: 0)
         incidentsViewModel.getIncidentsById(currentMatchId ?: 0)
 
-        Log.d("TEST", currentMatchId.toString())
 
         eventViewModel.event.observe(this) {
             binding.run {
@@ -51,6 +49,23 @@ class EventDetailActivity : AppCompatActivity() {
                 tournamentLogo.load(Helper.getTournamentImageUrl(eventViewModel.event.value?.tournament?.id))
                 homeTeamLogo.load(Helper.getTeamImageUrl(eventViewModel.event.value?.homeTeam?.id))
                 awayTeamLogo.load(Helper.getTeamImageUrl(eventViewModel.event.value?.awayTeam?.id))
+
+                homeTeamLogo.setOnClickListener {
+                    TeamDetailsActivity.start(
+                        this@EventDetailActivity,
+                        eventViewModel.event.value?.homeTeam?.id ?: 1,
+                        eventViewModel.event.value?.tournament?.sport?.name ?: ""
+                    )
+                }
+
+                awayTeamLogo.setOnClickListener {
+                    TeamDetailsActivity.start(
+                        this@EventDetailActivity,
+                        eventViewModel.event.value?.awayTeam?.id ?: 1,
+                        eventViewModel.event.value?.tournament?.sport?.name ?: ""
+                    )
+                }
+
                 homeTeamName.text = eventViewModel.event.value?.homeTeam?.name
                 awayTeamName.text = eventViewModel.event.value?.awayTeam?.name
                 homeTeamScore.text = eventViewModel.event.value?.homeScore?.total.toString()
@@ -71,7 +86,10 @@ class EventDetailActivity : AppCompatActivity() {
         binding.matchDetailsRecyclerView.adapter = adapter
         binding.matchDetailsRecyclerView.layoutManager = linearLayoutManager
         incidentsViewModel.incidents.observe(this) {
-            adapter.setData(it.reversed(), eventViewModel.event.value?.tournament?.sport?.name ?: "football")
+            adapter.setData(
+                it.reversed(),
+                eventViewModel.event.value?.tournament?.sport?.name ?: "football"
+            )
         }
 
 

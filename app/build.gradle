@@ -69,10 +69,10 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.5.7"
 
     implementation("io.coil-kt:coil:2.3.0")
-
-
+    
     //Paging3
     implementation("androidx.paging:paging-runtime:3.1.1")
+
 
 
 }

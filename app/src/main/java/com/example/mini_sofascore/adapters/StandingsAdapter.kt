@@ -7,17 +7,17 @@ import com.example.mini_sofascore.data.TeamStanding
 import com.example.mini_sofascore.databinding.AmericanFootballStandingItemBinding
 import com.example.mini_sofascore.databinding.BasketballStandingItemBinding
 import com.example.mini_sofascore.databinding.FootballStandingItemBinding
+import com.example.mini_sofascore.utils.Sport
 
-
-class StandingsAdapter(private val sportName: String) :
+class StandingsAdapter :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var tournamentStandings: MutableList<TeamStanding?> = arrayListOf()
+    private var sportName: String? = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
         when (sportName) {
-            "Football" -> {
+            Sport.FOOTBALL -> {
                 return FootballStandingViewHolder(
                     FootballStandingItemBinding.inflate(
                         LayoutInflater.from(
@@ -26,13 +26,26 @@ class StandingsAdapter(private val sportName: String) :
                     )
                 )
             }
-            else -> return AmericanFootballStandingViewHolder(
-                AmericanFootballStandingItemBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
+            Sport.BASKETBALL -> {
+                return BasketballStandingViewHolder(
+                    BasketballStandingItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 )
-            )
+            }
+
+            Sport.AMERICAN_FOOTBALL -> {
+                return AmericanFootballStandingViewHolder(
+                    AmericanFootballStandingItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
+            }
+            else -> throw IllegalArgumentException()
         }
 
 
@@ -40,12 +53,14 @@ class StandingsAdapter(private val sportName: String) :
 
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(sportName) {
-            "Football" -> (holder as FootballStandingViewHolder).bind(tournamentStandings[position] as TeamStanding)
-            "Basketball" -> (holder as BasketballStandingViewHolder).bind(tournamentStandings[position] as TeamStanding)
-             else -> (holder as AmericanFootballStandingViewHolder).bind(
+        when (sportName) {
+            Sport.FOOTBALL -> (holder as FootballStandingViewHolder).bind(tournamentStandings[position] as TeamStanding)
+            Sport.BASKETBALL -> (holder as BasketballStandingViewHolder).bind(tournamentStandings[position] as TeamStanding)
+            Sport.AMERICAN_FOOTBALL -> (holder as AmericanFootballStandingViewHolder).bind(
                 tournamentStandings[position] as TeamStanding
             )
+            else -> throw IllegalArgumentException()
+
         }
     }
 
@@ -70,7 +85,8 @@ class StandingsAdapter(private val sportName: String) :
                 teamMatchesWon.text = tournamentStandings.wins.toString()
                 teamMatchesDrew.text = tournamentStandings.draws.toString()
                 teamMatchesLost.text = tournamentStandings.losses.toString()
-                teamTotalGoals.text = "${tournamentStandings.scoresFor}:${tournamentStandings.scoresAgainst}"
+                teamTotalGoals.text =
+                    "${tournamentStandings.scoresFor}:${tournamentStandings.scoresAgainst}"
                 teamTotalPoints.text = tournamentStandings.points.toString()
             }
         }
@@ -111,6 +127,11 @@ class StandingsAdapter(private val sportName: String) :
             }
         }
 
+    }
+
+    fun setSportName(sportName: String?) {
+        this.sportName = sportName
+        notifyDataSetChanged()
     }
 
 

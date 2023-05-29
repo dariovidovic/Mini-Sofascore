@@ -4,13 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.example.mini_sofascore.EventDetailActivity
-import com.example.mini_sofascore.R
 import com.example.mini_sofascore.data.Match
 import com.example.mini_sofascore.databinding.MatchesItemBinding
-import com.example.mini_sofascore.utils.Helper
 import com.example.mini_sofascore.utils.MatchesViewHolder
 
 

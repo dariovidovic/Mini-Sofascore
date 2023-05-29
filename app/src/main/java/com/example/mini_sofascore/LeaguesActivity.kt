@@ -3,26 +3,24 @@ package com.example.mini_sofascore
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import com.example.mini_sofascore.adapters.LeaguesViewPagerAdapter
-import com.example.mini_sofascore.databinding.ActivityMainBinding
-import com.example.mini_sofascore.viewmodels.MatchesViewModel
+import com.example.mini_sofascore.databinding.ActivityLeaguesBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-private lateinit var binding: ActivityMainBinding
-private lateinit var matchesViewModel: MatchesViewModel
-
 
 class LeaguesActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLeaguesBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityLeaguesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setSupportActionBar(binding.toolbar)
-        matchesViewModel = ViewModelProvider(this)[MatchesViewModel::class.java]
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         val adapter = LeaguesViewPagerAdapter(supportFragmentManager, lifecycle)
         binding.viewPager.adapter = adapter
@@ -32,6 +30,7 @@ class LeaguesActivity : AppCompatActivity() {
             tab.text = tabsArray[position]
             tab.icon = ContextCompat.getDrawable(this, tabsIcons[position])
         }.attach()
+
 
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
