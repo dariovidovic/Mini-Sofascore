@@ -113,6 +113,7 @@
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
@@ -142,13 +143,15 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="40dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="7dp"
+                android:background="@drawable/flag_shape"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/player_nationality"
                 tools:ignore="ContentDescription,ImageContrastCheck"
-                tools:src="@drawable/ic_launcher_background" />
+                />
 
             <TextView
+                android:id="@+id/player_country_name"
                 style="@style/Headline3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -166,6 +169,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
@@ -210,6 +214,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"

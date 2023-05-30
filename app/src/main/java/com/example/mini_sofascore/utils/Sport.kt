@@ -9,4 +9,13 @@ object Sport {
 object Type {
     const val TOURNAMENT = "tournament"
     const val TEAM = "team"
+    const val PLAYER = "player"
+}
+
+object Slug {
+    const val PLAYER_ID = "playerId"
+    const val EVENT_ID = "eventId"
+    const val TEAM_ID = "teamId"
+    const val TOURNAMENT_ID = "tournamentId"
+    const val SPORT = "sportSlug"
 }

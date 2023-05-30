@@ -16,6 +16,8 @@ data class Incidents(
 data class Player(
     val id: Int,
     val name: String,
+    val team: Team,
     val country: Country,
-    val position: String
+    val position: String,
+    val dateOfBirth: String
 )

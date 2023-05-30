@@ -1,7 +1,6 @@
 package com.example.mini_sofascore.utils
 
 import android.content.Context
-import android.content.res.Resources
 import android.util.TypedValue
 import java.util.*
 
@@ -46,6 +45,8 @@ object Helper {
             context.resources.displayMetrics
         ).toInt()
     }
+
+
 
 
 }

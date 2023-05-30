@@ -4,6 +4,7 @@
     <string name="leagues">Leagues</string>
     <string name="settings">Settings</string>
     <string name="event_info">%s, %s, %s, Round %s</string>
+    <string name="player_age">%d Yrs</string>
     <string name="dash">-</string>
     <string name="foul">Foul</string>
     <string name="ladder">#</string>

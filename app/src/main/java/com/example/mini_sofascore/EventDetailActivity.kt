@@ -10,6 +10,7 @@ import coil.load
 import com.example.mini_sofascore.adapters.IncidentsAdapter
 import com.example.mini_sofascore.databinding.ActivityEventDetailBinding
 import com.example.mini_sofascore.utils.Helper
+import com.example.mini_sofascore.utils.Slug
 import com.example.mini_sofascore.viewmodels.EventViewModel
 import com.example.mini_sofascore.viewmodels.IncidentsViewModel
 
@@ -28,7 +29,7 @@ class EventDetailActivity : AppCompatActivity() {
         binding = ActivityEventDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val currentMatchId = intent.extras?.getInt(EVENT_ID)
+        val currentMatchId = intent.extras?.getInt(Slug.EVENT_ID)
 
         eventViewModel = ViewModelProvider(this)[EventViewModel::class.java]
         incidentsViewModel = ViewModelProvider(this)[IncidentsViewModel::class.java]
@@ -103,11 +104,9 @@ class EventDetailActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val EVENT_ID = "event_id"
-
         fun start(context: Context, id: Int) {
             Intent(context, EventDetailActivity::class.java).apply {
-                putExtra(EVENT_ID, id)
+                putExtra(Slug.EVENT_ID, id)
             }.also {
                 context.startActivity(it)
             }

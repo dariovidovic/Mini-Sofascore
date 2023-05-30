@@ -1,14 +1,12 @@
 package com.example.mini_sofascore.adapters
 
 import android.annotation.SuppressLint
-import android.content.res.Resources
-import android.util.TypedValue
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mini_sofascore.PlayerDetailsActivity
 import com.example.mini_sofascore.R
 import com.example.mini_sofascore.data.Incidents
 import com.example.mini_sofascore.databinding.FoulItemBinding
@@ -90,7 +88,6 @@ class IncidentsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     class ScoreViewHolder(private val binding: ScoreItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(incident: Incidents, sport: String) {
-
             binding.run {
                 homeTeamScore.text = incident.homeScore.toString()
                 awayTeamScore.text = incident.awayScore.toString()
@@ -123,12 +120,6 @@ class IncidentsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         constraintSet.applyTo(binding.scoreConstraintLayout)
                         incidentTime.text = incident.time.toString()
 
-                        /*val iconParams = incidentIcon.layoutParams as ViewGroup.MarginLayoutParams
-                        iconParams.topMargin = Helper.dpToPx(itemView.context,8)
-                        incidentIcon.layoutParams = iconParams*/
-
-
-
                         when (incident.goalType) {
                             "onepoint" -> incidentIcon.setImageResource(R.drawable.ic_one_point)
                             "twopoint" -> incidentIcon.setImageResource(R.drawable.ic_two_points)
@@ -160,6 +151,15 @@ class IncidentsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             incidents[position]?.let { (holder as ScoreViewHolder).bind(it, sport) }
         } else
             incidents[position]?.let { (holder as PeriodViewHolder).bind(it, sport) }
+
+
+        holder.itemView.setOnClickListener {
+            val incident = incidents.getOrNull(position) as Incidents
+
+            incident.let {
+                PlayerDetailsActivity.start(holder.itemView.context, it.player.id)
+            }
+        }
 
         if (incidents[position]?.teamSide == "away")
             holder.itemView.layoutDirection = View.LAYOUT_DIRECTION_RTL
