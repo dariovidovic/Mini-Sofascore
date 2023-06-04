@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/score_constraint_layout"
+    android:layout_width="match_parent"
+    android:layout_height="40dp">
+
+    <ImageView
+        android:id="@+id/incident_icon"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription,ImageContrastCheck"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <View
+        android:id="@+id/score_divider"
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/on_surface_on_surface_lv_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/incident_icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/home_team_score"
+        style="@style/Headline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="end"
+        android:minWidth="32dp"
+        android:minHeight="16dp"
+        android:textColor="#121212"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/incident_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/away_team_score"
+        style="@style/Headline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="start"
+        android:minWidth="32dp"
+        android:textColor="#121212"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/dash"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/dash"
+        style="@style/Headline1"
+        android:minWidth="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="center"
+        android:text="@string/dash"
+        android:textColor="#121212"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/home_team_score"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="-" />
+
+    <TextView
+        android:id="@+id/incident_time"
+        style="@style/Micro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="11dp"
+        android:gravity="center"
+        android:minWidth="24dp"
+        android:textColor="@color/on_surface_on_surface_lv_2"
+        app:layout_constraintStart_toEndOf="@id/away_team_score"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="16'" />
+
+    <View
+        android:layout_width="24dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="49dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/on_surface_on_surface_lv_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/away_team_score"
+        app:layout_constraintTop_toBottomOf="@id/incident_time" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

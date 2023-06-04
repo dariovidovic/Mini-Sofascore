@@ -10,6 +10,9 @@ object Type {
     const val TOURNAMENT = "tournament"
     const val TEAM = "team"
     const val PLAYER = "player"
+    const val GOAL = "goal"
+    const val FOUL = "card"
+    const val PERIOD = "period"
 }
 
 object Slug {
@@ -18,4 +21,14 @@ object Slug {
     const val TEAM_ID = "teamId"
     const val TOURNAMENT_ID = "tournamentId"
     const val SPORT = "sportSlug"
+}
+
+object Goal {
+    const val ONE_POINT = "onepoint"
+    const val TWO_POINTS = "twopoint"
+    const val THREE_POINTS = "threepoint"
+    const val TOUCHDOWN = "touchdown"
+    const val EXTRA_POINT = "extrapoint"
+    const val FIELD_GOAL = "fieldgoal"
+    const val SAFETY = "safety"
 }

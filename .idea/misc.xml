@@ -12,6 +12,7 @@
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/ic_icon_goal.xml" value="0.149" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/ic_pointer_right.xml" value="0.156" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/ic_sofascore_lockup.xml" value="0.1675" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/ic_sofascore_logo.xml" value="0.1775" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/ic_total_players.xml" value="0.164" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/item_shape.xml" value="0.107" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/player_image_layout_shape.xml" value="0.107" />
@@ -23,16 +24,19 @@
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/spinner_layout_shape.xml" value="0.164" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/spinner_shape.xml" value="0.164" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/drawable/tab_indicator_selected.xml" value="0.1165" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_change_theme.xml" value="0.190625" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_event_detail.xml" value="0.25416666666666665" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_leagues.xml" value="0.25416666666666665" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_main_list.xml" value="0.2037037037037037" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_player_details.xml" value="0.2596599690880989" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_settings.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_team_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/activity_tournament_details.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/american_football_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/american_football_standing_header.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/american_football_standing_item.xml" value="0.264" />
+        <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/basketball_score_item.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/basketball_standing_header.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/basketball_standing_item.xml" value="0.264" />
         <entry key="..\:/Mini-Sofascore/app/src/main/res/layout/date_item.xml" value="0.4" />

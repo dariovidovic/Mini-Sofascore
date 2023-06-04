@@ -1,7 +1,5 @@
 package com.example.mini_sofascore.utils
 
-import android.content.Context
-import android.util.TypedValue
 import java.util.*
 
 object Helper {
@@ -38,13 +36,6 @@ object Helper {
         return "HR"
     }
 
-    fun dpToPx(context: Context, dp: Int): Int {
-        return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            dp.toFloat(),
-            context.resources.displayMetrics
-        ).toInt()
-    }
 
 
 

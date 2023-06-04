@@ -35,4 +35,23 @@
     <string name="nationality">Nationality</string>
     <string name="position">Position</string>
     <string name="matches">Matches</string>
+    <string name="time">%d</string>
+    <string name="current_score">%d  -  %d</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
+    <string name="english">English</string>
+    <string name="light">Light</string>
+    <string name="dark">Dark</string>
+    <string name="about">About</string>
+    <string name="academy">Sofascore Android Academy</string>
+    <string name="academy_class">Class 2023</string>
+    <string name="app">App Name</string>
+    <string name="app_label">Mini Sofascore App</string>
+    <string name="api_credit">API Credit</string>
+    <string name="sofascore">Sofascore</string>
+    <string name="developer">Developer</string>
+    <string name="developer_name">Dario Vidović</string>
+    <string name="football">Football</string>
+    <string name="basketball">Basketball</string>
+    <string name="am_football">Am. Football</string>
 </resources>

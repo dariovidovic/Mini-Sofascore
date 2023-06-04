@@ -89,7 +89,7 @@ class EventDetailActivity : AppCompatActivity() {
         incidentsViewModel.incidents.observe(this) {
             adapter.setData(
                 it.reversed(),
-                eventViewModel.event.value?.tournament?.sport?.name ?: "football"
+                eventViewModel.event.value?.tournament?.sport?.name ?: "Football"
             )
         }
 

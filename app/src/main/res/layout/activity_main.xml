@@ -38,7 +38,8 @@
             app:tabIconTint="@color/surface_surface_1"
             app:tabSelectedTextColor="@color/surface_surface_1"
             app:tabTextAppearance="@style/Body"
-            app:tabTextColor="@color/surface_surface_1" />
+            app:tabTextColor="@color/surface_surface_1"
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.appbar.AppBarLayout>
 
 

@@ -67,6 +67,9 @@ class MainActivity : AppCompatActivity() {
             R.id.trophy -> {
                 startActivity(Intent(this@MainActivity, LeaguesActivity::class.java))
             }
+            R.id.settings -> {
+                startActivity(Intent(this@MainActivity, SettingsActivity::class.java))
+            }
         }
         return super.onOptionsItemSelected(item)
     }
