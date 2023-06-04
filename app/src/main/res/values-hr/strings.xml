@@ -55,4 +55,12 @@
     <string name="football">Nogomet</string>
     <string name="basketball">Košarka</string>
     <string name="am_football">Am. Nogomet</string>
+    <string name="required">Obavezno</string>
+    <string name="email_hint">Adresa e-pošte</string>
+    <string name="password_hint">Lozinka</string>
+    <string name="forgotten_password">Zaboravljena lozinka?</string>
+    <string name="login">Prijava</string>
+    <string name="sign_up">Registracija</string>
+    <string name="confirm_password">Potvrdite lozinku</string>
+    <string name="no_account">Nemate korisnički račun?</string>
 </resources>
