@@ -63,4 +63,8 @@
     <string name="sign_up">Registracija</string>
     <string name="confirm_password">Potvrdite lozinku</string>
     <string name="no_account">Nemate korisnički račun?</string>
+    <string name="log_out">Odjava</string>
+    <string name="invalid_email">Nevažeća adresa e-pošte</string>
+    <string name="invalid_password">Min. 8 znakova</string>
+    <string name="password_no_match">Lozinke se ne podudaraju</string>
 </resources>

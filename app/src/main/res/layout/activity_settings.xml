@@ -281,5 +281,14 @@
         android:src="@drawable/ic_sofascore_logo"
         tools:ignore="ContentDescription" />
 
+    <Button
+        android:id="@+id/log_out_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/log_out"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="25dp"
+        android:background="@color/color_primary_highlight"/>
+
 
 </LinearLayout>

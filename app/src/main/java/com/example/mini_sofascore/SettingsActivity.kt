@@ -3,12 +3,15 @@
 package com.example.mini_sofascore
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mini_sofascore.databinding.ActivitySettingsBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 
@@ -32,6 +35,12 @@ class SettingsActivity : AppCompatActivity() {
         }
         binding.lightButton.setOnClickListener {
             binding.darkButton.isChecked = false
+        }
+
+        binding.logOutButton.setOnClickListener {
+            Firebase.auth.signOut()
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
 
         binding.languageSpinner.onItemSelectedListener =

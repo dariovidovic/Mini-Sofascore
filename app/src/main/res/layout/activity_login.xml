@@ -17,6 +17,7 @@
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/user_email_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -35,12 +36,12 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/user_password_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="30dp"
         app:helperText="@string/required"
-        app:counterEnabled="true"
         app:passwordToggleEnabled="true"
         app:helperTextTextColor="@color/status_error">
 
@@ -60,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
         android:layout_marginTop="40dp"
-        android:background="@color/color_primary_highlight"
+        android:background="@drawable/button_toggle"
         android:text="@string/login"
         android:textColor="@color/on_surface_on_surface_lv_1" />
 

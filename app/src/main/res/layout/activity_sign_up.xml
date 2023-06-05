@@ -16,6 +16,7 @@
         tools:ignore="ContentDescription" />
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/user_email_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
@@ -34,11 +35,15 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/user_password_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="40dp"
         app:helperText="@string/required"
+        app:passwordToggleEnabled="true"
+        app:counterEnabled="true"
+        app:counterMaxLength="16"
         app:helperTextTextColor="@color/status_error">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -51,15 +56,19 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/user_confirm_password_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginTop="40dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="16"
+        app:passwordToggleEnabled="true"
         app:helperText="@string/required"
         app:helperTextTextColor="@color/status_error">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/confirm_password"
+            android:id="@+id/user_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:hint="@string/confirm_password"
@@ -70,12 +79,16 @@
 
 
     <Button
+        android:id="@+id/register_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="148dp"
         android:layout_marginTop="40dp"
-        android:background="@color/color_primary_highlight"
+        android:background="@drawable/button_toggle"
         android:text="@string/sign_up"
         android:textColor="@color/on_surface_on_surface_lv_1" />
+
+
+
 
 </LinearLayout>
