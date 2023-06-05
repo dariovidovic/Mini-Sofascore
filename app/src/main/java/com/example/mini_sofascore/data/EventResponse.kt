@@ -2,6 +2,7 @@ package com.example.mini_sofascore.data
 
 data class Event(
     val id: Int,
+    val slug: String,
     val tournament: Tournament,
     val status: String,
     val homeTeam: HomeTeam,

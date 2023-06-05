@@ -4,6 +4,10 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
@@ -13,6 +17,11 @@ import com.example.mini_sofascore.utils.Helper
 import com.example.mini_sofascore.utils.Slug
 import com.example.mini_sofascore.viewmodels.EventViewModel
 import com.example.mini_sofascore.viewmodels.IncidentsViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
 
 private lateinit var eventViewModel: EventViewModel
@@ -21,6 +30,11 @@ private lateinit var incidentsViewModel: IncidentsViewModel
 class EventDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEventDetailBinding
+    private var favouriteStatus: Boolean = false
+    private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
+    private var favMatchId: Int = 0
+    private var currentMatchName: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +42,14 @@ class EventDetailActivity : AppCompatActivity() {
 
         binding = ActivityEventDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        auth = Firebase.auth
+        database =
+            FirebaseDatabase.getInstance("https://mini-sofascore-default-rtdb.europe-west1.firebasedatabase.app/")
+                .getReference("Users")
 
         val currentMatchId = intent.extras?.getInt(Slug.EVENT_ID)
+        favMatchId = currentMatchId ?: 0
 
         eventViewModel = ViewModelProvider(this)[EventViewModel::class.java]
         incidentsViewModel = ViewModelProvider(this)[IncidentsViewModel::class.java]
@@ -50,6 +70,15 @@ class EventDetailActivity : AppCompatActivity() {
                 tournamentLogo.load(Helper.getTournamentImageUrl(eventViewModel.event.value?.tournament?.id))
                 homeTeamLogo.load(Helper.getTeamImageUrl(eventViewModel.event.value?.homeTeam?.id))
                 awayTeamLogo.load(Helper.getTeamImageUrl(eventViewModel.event.value?.awayTeam?.id))
+
+                currentMatchName = eventViewModel.event.value?.slug ?: ""
+                database.child(auth.currentUser?.uid.toString()).child("favMatches").get()
+                    .addOnSuccessListener {
+                        favouriteStatus = it.hasChild(currentMatchName)
+                        invalidateOptionsMenu()
+                    }.addOnFailureListener {
+                    Log.e("firebase", "Error getting data", it)
+                }
 
                 homeTeamLogo.setOnClickListener {
                     TeamDetailsActivity.start(
@@ -93,14 +122,49 @@ class EventDetailActivity : AppCompatActivity() {
             )
         }
 
-
-
         binding.backIcon.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.fav_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        if (!favouriteStatus) {
+            menu?.findItem(R.id.action_fav)?.isVisible = true
+            menu?.findItem(R.id.action_unfav)?.isVisible = false
+        } else {
+            menu?.findItem(R.id.action_fav)?.isVisible = false
+            menu?.findItem(R.id.action_unfav)?.isVisible = true
+        }
+
+        return super.onPrepareOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_fav -> {
+                Toast.makeText(this, "You saved this match!", Toast.LENGTH_SHORT).show()
+                database.child(auth.currentUser?.uid.toString())
+                    .child("favMatches").child(currentMatchName).setValue(favMatchId)
+                favouriteStatus = true
+                invalidateOptionsMenu()
+            }
+            R.id.action_unfav -> {
+                Toast.makeText(this, "Removed from favourites", Toast.LENGTH_SHORT).show()
+                database.child(auth.currentUser?.uid.toString())
+                    .child("favMatches").child(currentMatchName).removeValue()
+                favouriteStatus = false
+                invalidateOptionsMenu()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     companion object {

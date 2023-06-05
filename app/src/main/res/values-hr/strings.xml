@@ -67,4 +67,6 @@
     <string name="invalid_email">Nevažeća adresa e-pošte</string>
     <string name="invalid_password">Min. 8 znakova</string>
     <string name="password_no_match">Lozinke se ne podudaraju</string>
+    <string name="fav">Favorit</string>
+    <string name="unfav">Un favorit</string>
 </resources>

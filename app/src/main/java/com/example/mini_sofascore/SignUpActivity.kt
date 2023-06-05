@@ -7,7 +7,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import com.example.mini_sofascore.data.User
 import com.example.mini_sofascore.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth

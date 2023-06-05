@@ -66,4 +66,6 @@
     <string name="invalid_email">Invalid e-mail address</string>
     <string name="invalid_password">Min. 8 characters</string>
     <string name="password_no_match">Passwords don\'t match</string>
+    <string name="fav">Favourite</string>
+    <string name="unfav">Un favourite</string>
 </resources>
