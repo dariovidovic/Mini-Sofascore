@@ -1,5 +1,6 @@
 package com.example.mini_sofascore.utils
 
+
 object Sport {
     const val FOOTBALL = "Football"
     const val BASKETBALL = "Basketball"
@@ -31,4 +32,9 @@ object Goal {
     const val EXTRA_POINT = "extrapoint"
     const val FIELD_GOAL = "fieldgoal"
     const val SAFETY = "safety"
+}
+
+object Status {
+    const val FINISHED = "finished"
+    const val NOT_STARTED = "notstarted"
 }

@@ -1,5 +1,7 @@
 package com.example.mini_sofascore.utils
 
+import android.content.res.Resources
+import com.example.mini_sofascore.R
 import java.util.*
 
 object Helper {
@@ -35,9 +37,6 @@ object Helper {
         }
         return "HR"
     }
-
-
-
 
 
 }

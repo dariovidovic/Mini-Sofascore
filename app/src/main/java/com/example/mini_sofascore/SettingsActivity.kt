@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.mini_sofascore.databinding.ActivitySettingsBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -32,9 +33,18 @@ class SettingsActivity : AppCompatActivity() {
 
         binding.darkButton.setOnClickListener {
             binding.lightButton.isChecked = false
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
         }
         binding.lightButton.setOnClickListener {
             binding.darkButton.isChecked = false
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
+        }
+
+        binding.backButtonLayout.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
 
         binding.logOutButton.setOnClickListener {

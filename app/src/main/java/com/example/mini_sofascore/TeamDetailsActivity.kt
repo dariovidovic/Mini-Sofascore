@@ -19,7 +19,7 @@ private lateinit var viewModel: TeamViewModel
 class TeamDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTeamDetailsBinding
-    private val tabsArray = arrayOf("Details", "Matches", "Standings", "Squad")
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,15 +27,24 @@ class TeamDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         viewModel = ViewModelProvider(this)[TeamViewModel::class.java]
 
+        val tabsArray = arrayOf(
+            getString(R.string.details),
+            getString(R.string.matches),
+            getString(R.string.standings),
+            getString(R.string.squad)
+        )
         val currentTeamId = intent.extras?.getInt(TEAM_ID)
         val currentTeamSport = intent.extras?.getString(TEAM_SPORT)
 
         viewModel.getTeamDetails(currentTeamId ?: 1)
         viewModel.teamDetails.observe(this) {
+            val teamCountryCode = Helper.getCountryCode(it?.country?.name ?: "")
+
             binding.run {
                 teamLogo.load(Helper.getTeamImageUrl(currentTeamId))
                 teamName.text = viewModel.teamDetails.value?.name
                 countryName.text = viewModel.teamDetails.value?.country?.name
+                countryLogo.load(Helper.getCountryImageUrl(teamCountryCode))
             }
         }
 
@@ -51,6 +60,10 @@ class TeamDetailsActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabsArray[position]
         }.attach()
+
+        binding.backIcon.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
 
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {

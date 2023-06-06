@@ -30,19 +30,21 @@ class TournamentDetailsActivity : AppCompatActivity() {
 
         tournamentViewModel.getTournamentById(currentTournamentId ?: 1)
         tournamentViewModel.tournament.observe(this) {
+            val tournamentCountryCode = Helper.getCountryCode(it?.country?.name ?: "")
             binding.run {
                 tournamentLogo.load(Helper.getTournamentImageUrl(currentTournamentId))
                 tournamentName.text = tournamentViewModel.tournament.value?.name
                 countryName.text = tournamentViewModel.tournament.value?.country?.name
+                countryLogo.load(Helper.getCountryImageUrl(tournamentCountryCode))
             }
         }
 
-        val adapter = TournamentViewPagerAdapter(supportFragmentManager, lifecycle, currentTournamentId?:1)
+        val adapter =
+            TournamentViewPagerAdapter(supportFragmentManager, lifecycle, currentTournamentId ?: 1)
         binding.viewPager.adapter = adapter
 
         binding.backIcon.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            onBackPressedDispatcher.onBackPressed()
         }
 
 

@@ -60,4 +60,8 @@ interface FootballService {
 
     @GET("/team/{id}/tournaments")
     suspend fun getTeamTournaments(@Path("id") id: Int): Response<List<Tournament>>
+
+    @GET("/event/{id}")
+    suspend fun getFavMatch(@Path("id") id: Int): Response<Match>
+
 }

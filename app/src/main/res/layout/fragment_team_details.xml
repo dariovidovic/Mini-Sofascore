@@ -16,7 +16,7 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/team_info"
-        android:textColor="#121212" />
+        android:textColor="@color/on_surface_on_surface_lv_1" />
 
     <TextView
         android:id="@+id/coach_name"
@@ -66,7 +66,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:textColor="#374df5"
+                android:textColor="@color/color_primary_default"
                 tools:text="24" />
 
             <TextView
@@ -94,8 +94,8 @@
                 android:layout_height="40dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
-                app:indicatorInset="0dp"
                 app:indicatorColor="@color/color_primary_default"
+                app:indicatorInset="0dp"
                 app:trackColor="@color/color_secondary_default" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
-                android:textColor="#374df5"
+                android:textColor="@color/color_primary_default"
                 tools:text="10" />
 
             <TextView
@@ -137,7 +137,7 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/tournaments"
-        android:textColor="#121212" />
+        android:textColor="@color/on_surface_on_surface_lv_1" />
 
     <GridView
         android:id="@+id/team_tournaments_grid"
@@ -161,7 +161,7 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/venue"
-        android:textColor="#121212" />
+        android:textColor="@color/on_surface_on_surface_lv_1" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -178,7 +178,7 @@
             android:layout_marginEnd="54dp"
             android:layout_marginBottom="8dp"
             android:text="@string/stadium"
-            android:textColor="#121212" />
+            android:textColor="@color/on_surface_on_surface_lv_1" />
 
         <TextView
             android:id="@+id/team_stadium"
@@ -188,7 +188,7 @@
             android:layout_marginStart="54dp"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            android:textColor="#121212"
+            android:textColor="@color/on_surface_on_surface_lv_1"
             tools:text="Spotify Camp Nou" />
 
     </LinearLayout>
@@ -208,7 +208,7 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/next_match"
-        android:textColor="#121212" />
+        android:textColor="@color/on_surface_on_surface_lv_1" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/next_team_match_recycler_view"

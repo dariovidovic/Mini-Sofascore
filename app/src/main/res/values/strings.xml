@@ -68,4 +68,10 @@
     <string name="password_no_match">Passwords don\'t match</string>
     <string name="fav">Favourite</string>
     <string name="unfav">Un favourite</string>
+    <string name="my_matches">My matches</string>
+    <string name="matches_count">%d Events</string>
+    <string name="full_time">Full time</string>
+    <string name="details">Details</string>
+    <string name="standings">Standings</string>
+    <string name="squad">Squad</string>
 </resources>

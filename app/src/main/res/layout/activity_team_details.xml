@@ -31,7 +31,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_icon_back"
+                    android:src="@drawable/ic_arrow_back"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="ContentDescription" />
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="52dp"
-                android:textColor="#ffffff"
+                android:textColor="@color/on_color_on_color_primary"
                 app:layout_constraintStart_toEndOf="@id/team_logo_layout"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Barcelona" />
@@ -75,7 +75,7 @@
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="7dp"
                 android:background="@drawable/country_image"
                 app:layout_constraintStart_toEndOf="@id/team_logo_layout"
                 app:layout_constraintTop_toBottomOf="@id/team_name"
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
-                android:textColor="#ffffff"
+                android:textColor="@color/on_color_on_color_primary"
                 app:layout_constraintStart_toEndOf="@id/country_logo"
                 app:layout_constraintTop_toBottomOf="@id/team_name"
                 tools:text="Spain" />

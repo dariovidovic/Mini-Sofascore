@@ -13,7 +13,7 @@ import com.example.mini_sofascore.databinding.MatchesItemBinding
 import com.example.mini_sofascore.databinding.TournamentItemBinding
 import com.example.mini_sofascore.utils.Helper
 import com.example.mini_sofascore.utils.MatchesViewHolder
-import java.lang.IllegalArgumentException
+import kotlin.IllegalArgumentException
 
 private const val TYPE_TOURNAMENT = 0
 private const val TYPE_EVENT = 1
@@ -25,30 +25,36 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        return if (viewType == TYPE_EVENT) {
-            MatchesViewHolder(
-                MatchesItemBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
+        when (viewType) {
+            TYPE_EVENT -> {
+                return MatchesViewHolder(
+                    MatchesItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 )
-            )
-        } else if (viewType == TYPE_TOURNAMENT)
-            TournamentViewHolder(
-                TournamentItemBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
+            }
+            TYPE_TOURNAMENT -> {
+                return TournamentViewHolder(
+                    TournamentItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 )
-            )
-        else
-            LeaguesViewHolder(
-                LeaguesItemBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
+            }
+            TYPE_LEAGUES -> {
+                return LeaguesViewHolder(
+                    LeaguesItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 )
-            )
+            }
+            else -> throw IllegalArgumentException()
+        }
 
 
     }

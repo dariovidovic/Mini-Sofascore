@@ -18,8 +18,14 @@ class MatchesViewModel : ViewModel() {
 
     private val _matches = MutableLiveData<List<Match?>>()
     val matches: LiveData<List<Match?>> = _matches
+
     private val _tournaments = MutableLiveData<List<Tournament?>>()
     val tournaments: LiveData<List<Tournament?>> = _tournaments
+
+    private val _favMatches = MutableLiveData<List<Match?>>()
+    val favMatches: LiveData<List<Match?>> = _favMatches
+
+    private val tempList = arrayListOf<Match?>()
 
     var teamId: Int = 1
 
@@ -44,6 +50,14 @@ class MatchesViewModel : ViewModel() {
             tournaments?.also {
                 _tournaments.postValue(it)
             }
+        }
+    }
+
+    fun getFavMatchById(id: Int){
+        viewModelScope.launch {
+            val match = RetrofitHelper.getRetrofitInstance().getFavMatch(id).body()
+            tempList.add(match)
+            _favMatches.postValue(tempList)
         }
     }
 

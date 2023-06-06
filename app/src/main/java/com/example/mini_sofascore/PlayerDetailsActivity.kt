@@ -16,6 +16,7 @@ import com.example.mini_sofascore.adapters.TournamentMatchesAdapter
 import com.example.mini_sofascore.databinding.ActivityPlayerDetailsBinding
 import com.example.mini_sofascore.utils.Helper
 import com.example.mini_sofascore.utils.Slug
+import com.example.mini_sofascore.utils.Sport
 import com.example.mini_sofascore.viewmodels.PlayerViewModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -50,6 +51,9 @@ class PlayerDetailsActivity : AppCompatActivity() {
             }
         }
 
+        binding.backIcon.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
         viewModel.playerDetails.observe(this) {
             val playerCountryCode = Helper.getCountryCode(it?.country?.name ?: "")
             val countryImageUrl = Helper.getCountryImageUrl(playerCountryCode)
@@ -96,6 +100,22 @@ class PlayerDetailsActivity : AppCompatActivity() {
                     age
                 )
             }
+        }
+
+        binding.playerTeamLogo.setOnClickListener {
+            TeamDetailsActivity.start(
+                this,
+                viewModel.playerDetails.value?.team?.id ?: 1,
+                viewModel.playerDetails.value?.sport?.name ?: Sport.FOOTBALL
+            )
+        }
+
+        binding.playerTeamName.setOnClickListener {
+            TeamDetailsActivity.start(
+                this,
+                viewModel.playerDetails.value?.team?.id ?: 1,
+                viewModel.playerDetails.value?.sport?.name ?: Sport.FOOTBALL
+            )
         }
 
     }

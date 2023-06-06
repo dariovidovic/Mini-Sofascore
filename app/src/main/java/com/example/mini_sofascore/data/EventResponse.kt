@@ -9,5 +9,6 @@ data class Event(
     val awayTeam: AwayTeam,
     val homeScore: HomeScore,
     val awayScore: AwayScore,
+    val startDate: String,
     val round: Int
 )

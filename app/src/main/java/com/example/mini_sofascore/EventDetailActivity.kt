@@ -1,5 +1,6 @@
 package com.example.mini_sofascore
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -15,13 +16,16 @@ import com.example.mini_sofascore.adapters.IncidentsAdapter
 import com.example.mini_sofascore.databinding.ActivityEventDetailBinding
 import com.example.mini_sofascore.utils.Helper
 import com.example.mini_sofascore.utils.Slug
+import com.example.mini_sofascore.utils.Status
 import com.example.mini_sofascore.viewmodels.EventViewModel
 import com.example.mini_sofascore.viewmodels.IncidentsViewModel
+import com.example.mini_sofascore.viewmodels.MatchesViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 
 
 private lateinit var eventViewModel: EventViewModel
@@ -36,13 +40,15 @@ class EventDetailActivity : AppCompatActivity() {
     private var favMatchId: Int = 0
     private var currentMatchName: String = ""
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_detail)
-
         binding = ActivityEventDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setSupportActionBar(binding.toolbar)
+
         auth = Firebase.auth
         database =
             FirebaseDatabase.getInstance("https://mini-sofascore-default-rtdb.europe-west1.firebasedatabase.app/")
@@ -77,8 +83,8 @@ class EventDetailActivity : AppCompatActivity() {
                         favouriteStatus = it.hasChild(currentMatchName)
                         invalidateOptionsMenu()
                     }.addOnFailureListener {
-                    Log.e("firebase", "Error getting data", it)
-                }
+                        Log.e("firebase", "Error getting data", it)
+                    }
 
                 homeTeamLogo.setOnClickListener {
                     TeamDetailsActivity.start(
@@ -102,10 +108,14 @@ class EventDetailActivity : AppCompatActivity() {
                 awayTeamScore.text = eventViewModel.event.value?.awayScore?.total.toString()
 
                 val event = eventViewModel.event.value
-                if (event?.status == "finished") {
-                    eventStatus.text = "Full Time"
-                } else eventStatus.text = "18:00"
-
+                val stringFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                val hourFormat = SimpleDateFormat("HH:mm")
+                val data = event?.startDate?.let { it -> stringFormat.parse(it) }
+                when (event?.status) {
+                    Status.FINISHED -> eventStatus.text = resources.getString(R.string.full_time)
+                    Status.NOT_STARTED -> eventStatus.text = data?.let { hourFormat.format(it) }
+                    else -> eventStatus.text = ""
+                }
 
             }
         }
@@ -123,8 +133,15 @@ class EventDetailActivity : AppCompatActivity() {
         }
 
         binding.backIcon.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.eventInfo.setOnClickListener {
+            TournamentDetailsActivity.start(
+                this@EventDetailActivity,
+                eventViewModel.event.value?.tournament?.id ?: 1
+            )
+
         }
 
 

@@ -69,4 +69,10 @@
     <string name="password_no_match">Lozinke se ne podudaraju</string>
     <string name="fav">Favorit</string>
     <string name="unfav">Un favorit</string>
+    <string name="my_matches">Moje utakmice</string>
+    <string name="matches_count">%d Utakmica</string>
+    <string name="full_time">Kraj</string>
+    <string name="details">Detalji</string>
+    <string name="standings">Tablica</string>
+    <string name="squad">Momčad</string>
 </resources>

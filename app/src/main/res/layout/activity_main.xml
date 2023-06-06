@@ -36,6 +36,8 @@
             android:layout_height="wrap_content"
             android:background="@color/color_primary_default"
             app:tabIconTint="@color/surface_surface_1"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorColor="@color/surface_surface_1"
             app:tabSelectedTextColor="@color/surface_surface_1"
             app:tabTextAppearance="@style/Body"
             app:tabTextColor="@color/surface_surface_1"
