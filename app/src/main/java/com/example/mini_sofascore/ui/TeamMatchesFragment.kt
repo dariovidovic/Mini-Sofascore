@@ -43,9 +43,7 @@ class TeamMatchesFragment : Fragment() {
             lifecycleScope.launch {
                 adapter.submitData(it)
             }
-
         }
-
         return binding.root
     }
 

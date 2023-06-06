@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -22,11 +23,10 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-
 class PlayerDetailsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlayerDetailsBinding
-    private lateinit var viewModel: PlayerViewModel
+    private val viewModel by viewModels<PlayerViewModel>()
     private val adapter by lazy { TournamentMatchesAdapter() }
 
     @SuppressLint("SimpleDateFormat")
@@ -34,8 +34,6 @@ class PlayerDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPlayerDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        viewModel = ViewModelProvider(this)[PlayerViewModel::class.java]
 
         val linearLayoutManager =
             LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -120,9 +118,7 @@ class PlayerDetailsActivity : AppCompatActivity() {
 
     }
 
-
     companion object {
-
         fun start(context: Context, id: Int) {
             Intent(context, PlayerDetailsActivity::class.java).apply {
                 putExtra(Slug.PLAYER_ID, id)

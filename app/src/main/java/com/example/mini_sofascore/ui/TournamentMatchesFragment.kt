@@ -43,9 +43,7 @@ class TournamentMatchesFragment : Fragment() {
             lifecycleScope.launch {
                 adapter.submitData(it)
             }
-
         }
-
 
         return binding.root
     }

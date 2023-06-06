@@ -14,8 +14,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 
-
-
 class MyMatchesActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMyMatchesBinding

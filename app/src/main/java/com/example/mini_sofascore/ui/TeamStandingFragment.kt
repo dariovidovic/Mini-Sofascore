@@ -16,11 +16,11 @@ import com.example.mini_sofascore.adapters.StandingsAdapter
 import com.example.mini_sofascore.data.Tournament
 import com.example.mini_sofascore.databinding.FragmentTeamStandingBinding
 import com.example.mini_sofascore.utils.Helper
+import com.example.mini_sofascore.utils.Slug
 import com.example.mini_sofascore.utils.Sport
 import com.example.mini_sofascore.viewmodels.TeamViewModel
 import com.example.mini_sofascore.viewmodels.TournamentViewModel
 import java.lang.IllegalArgumentException
-
 
 class TeamStandingFragment : Fragment() {
 
@@ -30,7 +30,7 @@ class TeamStandingFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = this.arguments
-        val teamId = bundle?.getInt(TEAM_ID)
+        val teamId = bundle?.getInt(Slug.TEAM_ID)
         teamViewModel.getTeamTournaments(teamId ?: 0)
         super.onCreate(savedInstanceState)
     }
@@ -40,7 +40,7 @@ class TeamStandingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val bundle = this.arguments
-        val sportName = bundle?.getString(TEAM_SPORT)
+        val sportName = bundle?.getString(Slug.TEAM_SPORT)
         binding = FragmentTeamStandingBinding.inflate(inflater, container, false)
 
         teamViewModel.teamTournaments.observe(viewLifecycleOwner) {
@@ -118,14 +118,11 @@ class TeamStandingFragment : Fragment() {
 
     companion object {
 
-        private const val TEAM_ID = "teamId"
-        private const val TEAM_SPORT = "teamSport"
-
         fun newInstance(teamId: Int, teamSport: String): TeamStandingFragment {
             val fragment = TeamStandingFragment()
             val bundle = Bundle()
-            bundle.putInt(TEAM_ID, teamId)
-            bundle.putString(TEAM_SPORT, teamSport)
+            bundle.putInt(Slug.TEAM_ID, teamId)
+            bundle.putString(Slug.TEAM_SPORT, teamSport)
             fragment.arguments = bundle
             return fragment
         }

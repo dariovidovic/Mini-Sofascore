@@ -17,10 +17,9 @@ import com.example.mini_sofascore.utils.Sport
 import com.example.mini_sofascore.viewmodels.MatchesViewModel
 import java.text.SimpleDateFormat
 
-
 class MatchesFragment : Fragment() {
-    private var _binding: FragmentMatchesBinding? = null
-    private val binding get() = _binding!!
+
+    private lateinit var binding: FragmentMatchesBinding
     private val viewModel by viewModels<MatchesViewModel>()
 
     private val datesList = listOf(
@@ -55,9 +54,9 @@ class MatchesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        binding = FragmentMatchesBinding.inflate(inflater, container, false)
         val bundle = this.arguments
         val slug = bundle?.getString(Slug.SPORT)
-        _binding = FragmentMatchesBinding.inflate(inflater, container, false)
 
         val eventsAdapter = EventsAdapter()
         val linearLayoutManager =
@@ -68,6 +67,7 @@ class MatchesFragment : Fragment() {
         val stringFormat = SimpleDateFormat("yyyy-MM-dd")
         val dayFormat = SimpleDateFormat("E")
         var data = stringFormat.parse("2023-04-15")
+
         binding.matchesDate.text = data?.let { dayFormat.format(it) }
 
         val datesAdapter = DatesAdapter(datesList, DatesAdapter.OnClickListener { it ->

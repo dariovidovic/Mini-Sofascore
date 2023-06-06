@@ -22,6 +22,8 @@ object Slug {
     const val TEAM_ID = "teamId"
     const val TOURNAMENT_ID = "tournamentId"
     const val SPORT = "sportSlug"
+    const val LEAGUE = "leagueSlug"
+    const val TEAM_SPORT = "teamSport"
 }
 
 object Goal {

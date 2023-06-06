@@ -15,17 +15,16 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
-
 class SettingsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
     var firstLoad = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        setTheme(R.style.Theme_MiniSofascore)
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val languages = arrayOf("English", "Croatian")
         val languagesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages)
         languagesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)

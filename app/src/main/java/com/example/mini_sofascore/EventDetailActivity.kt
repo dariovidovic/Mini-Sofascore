@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
+import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.mini_sofascore.adapters.IncidentsAdapter
@@ -19,7 +19,6 @@ import com.example.mini_sofascore.utils.Slug
 import com.example.mini_sofascore.utils.Status
 import com.example.mini_sofascore.viewmodels.EventViewModel
 import com.example.mini_sofascore.viewmodels.IncidentsViewModel
-import com.example.mini_sofascore.viewmodels.MatchesViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
@@ -27,13 +26,12 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 
-
-private lateinit var eventViewModel: EventViewModel
-private lateinit var incidentsViewModel: IncidentsViewModel
-
 class EventDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityEventDetailBinding
+    private val eventViewModel by viewModels<EventViewModel>()
+    private val incidentsViewModel by viewModels<IncidentsViewModel>()
+
     private var favouriteStatus: Boolean = false
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
@@ -43,10 +41,9 @@ class EventDetailActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_event_detail)
         binding = ActivityEventDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
+        setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
 
         auth = Firebase.auth
@@ -57,12 +54,8 @@ class EventDetailActivity : AppCompatActivity() {
         val currentMatchId = intent.extras?.getInt(Slug.EVENT_ID)
         favMatchId = currentMatchId ?: 0
 
-        eventViewModel = ViewModelProvider(this)[EventViewModel::class.java]
-        incidentsViewModel = ViewModelProvider(this)[IncidentsViewModel::class.java]
-
         eventViewModel.getEventById(currentMatchId ?: 0)
         incidentsViewModel.getIncidentsById(currentMatchId ?: 0)
-
 
         eventViewModel.event.observe(this) {
             binding.run {

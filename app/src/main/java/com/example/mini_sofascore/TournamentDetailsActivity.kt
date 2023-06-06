@@ -4,29 +4,31 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModelProvider
 import coil.load
 import com.example.mini_sofascore.adapters.TournamentViewPagerAdapter
 import com.example.mini_sofascore.databinding.ActivityTournamentDetailsBinding
 import com.example.mini_sofascore.utils.Helper
+import com.example.mini_sofascore.utils.Slug
 import com.example.mini_sofascore.viewmodels.TournamentViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-private lateinit var tournamentViewModel: TournamentViewModel
-
 class TournamentDetailsActivity : AppCompatActivity() {
-    private val tabsArray = arrayOf("Matches", "Standings")
+
     private lateinit var binding: ActivityTournamentDetailsBinding
+    private val tournamentViewModel by viewModels<TournamentViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityTournamentDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        tournamentViewModel = ViewModelProvider(this)[TournamentViewModel::class.java]
 
-        val currentTournamentId = intent.extras?.getInt(TOURNAMENT_ID)
+        val tabsArray =
+            arrayOf(resources.getString(R.string.matches), resources.getString(R.string.standings))
+
+        val currentTournamentId = intent.extras?.getInt(Slug.TOURNAMENT_ID)
 
         tournamentViewModel.getTournamentById(currentTournamentId ?: 1)
         tournamentViewModel.tournament.observe(this) {
@@ -77,10 +79,9 @@ class TournamentDetailsActivity : AppCompatActivity() {
 
 
     companion object {
-        private const val TOURNAMENT_ID = "tournament_id"
         fun start(context: Context, id: Int) {
             Intent(context, TournamentDetailsActivity::class.java).apply {
-                putExtra(TOURNAMENT_ID, id)
+                putExtra(Slug.TOURNAMENT_ID, id)
             }.also {
                 context.startActivity(it)
             }

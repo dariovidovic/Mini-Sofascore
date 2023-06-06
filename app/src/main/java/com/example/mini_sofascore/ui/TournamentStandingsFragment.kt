@@ -10,19 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mini_sofascore.R
 import com.example.mini_sofascore.adapters.StandingsAdapter
 import com.example.mini_sofascore.databinding.FragmentTournamentStandingsBinding
+import com.example.mini_sofascore.utils.Slug
 import com.example.mini_sofascore.utils.Sport
 import com.example.mini_sofascore.viewmodels.TournamentViewModel
 
 
 class TournamentStandingsFragment : Fragment() {
 
-    private var _binding: FragmentTournamentStandingsBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentTournamentStandingsBinding
     private val viewModel by viewModels<TournamentViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = this.arguments
-        val tournamentId = bundle?.getInt(TOURNAMENT_ID)
+        val tournamentId = bundle?.getInt(Slug.TOURNAMENT_ID)
         viewModel.getTournamentStandingsById(tournamentId ?: 1)
         super.onCreate(savedInstanceState)
     }
@@ -31,7 +31,7 @@ class TournamentStandingsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTournamentStandingsBinding.inflate(layoutInflater, container, false)
+        binding = FragmentTournamentStandingsBinding.inflate(layoutInflater, container, false)
 
         val adapter = StandingsAdapter()
         val linearLayoutManager =
@@ -48,7 +48,7 @@ class TournamentStandingsFragment : Fragment() {
                 Sport.FOOTBALL -> {
                     view = layoutInflater.inflate(R.layout.football_standing_header, null)
                     binding.headerLayout.addView(view)
-                    it[2]?.sortedStandingsRows?.let { standings-> adapter.setData(standings) }
+                    it[2]?.sortedStandingsRows?.let { standings -> adapter.setData(standings) }
                 }
                 Sport.BASKETBALL -> {
                     view = layoutInflater.inflate(R.layout.basketball_standing_header, null)
@@ -69,16 +69,12 @@ class TournamentStandingsFragment : Fragment() {
     }
 
     companion object {
-
-        const val TOURNAMENT_ID = "tournamentId"
-
         fun newInstance(currentTournamentId: Int): TournamentStandingsFragment {
             val fragment = TournamentStandingsFragment()
             val bundle = Bundle()
-            bundle.putInt(TOURNAMENT_ID, currentTournamentId)
+            bundle.putInt(Slug.TOURNAMENT_ID, currentTournamentId)
             fragment.arguments = bundle
             return fragment
         }
-
     }
 }
