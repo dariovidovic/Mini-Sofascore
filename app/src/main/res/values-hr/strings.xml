@@ -41,6 +41,7 @@
     <string name="language">Jezik</string>
     <string name="theme">Tema</string>
     <string name="english">Engleski</string>
+    <string name="croatian">Hrvatski</string>
     <string name="light">Svijetli način rada</string>
     <string name="dark">Tamni način rada</string>
     <string name="about">About</string>
@@ -75,4 +76,7 @@
     <string name="details">Detalji</string>
     <string name="standings">Tablica</string>
     <string name="squad">Momčad</string>
+    <string name="no_matches">Nema utakmica</string>
+    <string name="view_tournament_details">Pogledaj detalje turnira</string>
+    <string name="no_results_yet">Nema rezultata.</string>
 </resources>

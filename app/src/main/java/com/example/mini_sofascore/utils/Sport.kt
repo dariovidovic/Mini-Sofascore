@@ -24,6 +24,9 @@ object Slug {
     const val SPORT = "sportSlug"
     const val LEAGUE = "leagueSlug"
     const val TEAM_SPORT = "teamSport"
+    const val LANGUAGE = "language"
+    const val SETTINGS = "settings"
+    const val DATE = "2023-04-15"
 }
 
 object Goal {

@@ -40,6 +40,7 @@
     <string name="language">Language</string>
     <string name="theme">Theme</string>
     <string name="english">English</string>
+    <string name="croatian">Croatian</string>
     <string name="light">Light</string>
     <string name="dark">Dark</string>
     <string name="about">About</string>
@@ -74,4 +75,7 @@
     <string name="details">Details</string>
     <string name="standings">Standings</string>
     <string name="squad">Squad</string>
+    <string name="no_matches">No matches</string>
+    <string name="view_tournament_details">View Tournament Details</string>
+    <string name="no_results_yet">No results yet.</string>
 </resources>

@@ -170,6 +170,35 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+        android:id="@+id/no_matches_today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/BodyParagraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:text="@string/no_results_yet"
+            android:textColor="@color/on_surface_on_surface_lv_2" />
+
+        <Button
+            android:id="@+id/view_tournament_details_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/surface_surface_1"
+            android:padding="8dp"
+            android:text="@string/view_tournament_details"
+            android:textColor="@color/color_primary_default" />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/match_details_recycler_view"
         android:layout_width="match_parent"

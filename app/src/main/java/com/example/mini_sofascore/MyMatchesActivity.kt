@@ -3,8 +3,8 @@ package com.example.mini_sofascore
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mini_sofascore.adapters.EventsAdapter
 import com.example.mini_sofascore.databinding.ActivityMyMatchesBinding
@@ -19,6 +19,7 @@ class MyMatchesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMyMatchesBinding
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
+    private val viewModel by viewModels<MatchesViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,6 @@ class MyMatchesActivity : AppCompatActivity() {
         database =
             FirebaseDatabase.getInstance("https://mini-sofascore-default-rtdb.europe-west1.firebasedatabase.app/")
                 .getReference("Users")
-        val viewModel = ViewModelProvider(this)[MatchesViewModel::class.java]
 
         val adapter = EventsAdapter()
         val linearLayoutManager =
@@ -65,4 +65,5 @@ class MyMatchesActivity : AppCompatActivity() {
             finish()
         }
     }
+
 }

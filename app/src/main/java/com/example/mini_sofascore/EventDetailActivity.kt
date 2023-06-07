@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.example.mini_sofascore.adapters.IncidentsAdapter
 import com.example.mini_sofascore.databinding.ActivityEventDetailBinding
 import com.example.mini_sofascore.utils.Helper
 import com.example.mini_sofascore.utils.Slug
+import com.example.mini_sofascore.utils.Sport
 import com.example.mini_sofascore.utils.Status
 import com.example.mini_sofascore.viewmodels.EventViewModel
 import com.example.mini_sofascore.viewmodels.IncidentsViewModel
@@ -45,7 +47,7 @@ class EventDetailActivity : AppCompatActivity() {
 
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-
+        binding.noMatchesToday.visibility = View.INVISIBLE
         auth = Firebase.auth
         database =
             FirebaseDatabase.getInstance("https://mini-sofascore-default-rtdb.europe-west1.firebasedatabase.app/")
@@ -119,9 +121,13 @@ class EventDetailActivity : AppCompatActivity() {
         binding.matchDetailsRecyclerView.adapter = adapter
         binding.matchDetailsRecyclerView.layoutManager = linearLayoutManager
         incidentsViewModel.incidents.observe(this) {
+            if (it.isNotEmpty()) {
+                binding.noMatchesToday.visibility = View.GONE
+            } else
+                binding.noMatchesToday.visibility = View.VISIBLE
             adapter.setData(
                 it.reversed(),
-                eventViewModel.event.value?.tournament?.sport?.name ?: "Football"
+                eventViewModel.event.value?.tournament?.sport?.name ?: Sport.FOOTBALL
             )
         }
 
@@ -134,7 +140,13 @@ class EventDetailActivity : AppCompatActivity() {
                 this@EventDetailActivity,
                 eventViewModel.event.value?.tournament?.id ?: 1
             )
+        }
 
+        binding.viewTournamentDetailsButton.setOnClickListener {
+            TournamentDetailsActivity.start(
+                this@EventDetailActivity,
+                eventViewModel.event.value?.tournament?.id ?: 1
+            )
         }
 
 

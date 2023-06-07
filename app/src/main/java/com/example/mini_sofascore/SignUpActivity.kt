@@ -1,12 +1,12 @@
 package com.example.mini_sofascore
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.mini_sofascore.data.User
 import com.example.mini_sofascore.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -38,6 +38,11 @@ class SignUpActivity : AppCompatActivity() {
                 .getReference("Users")
         binding.registerButton.setOnClickListener {
             createAccount()
+        }
+
+        binding.backButtonLayout.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
 
 
@@ -128,5 +133,9 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+    }
+
+    override fun onBackPressed() {
+        startActivity(Intent(this,LoginActivity::class.java))
     }
 }

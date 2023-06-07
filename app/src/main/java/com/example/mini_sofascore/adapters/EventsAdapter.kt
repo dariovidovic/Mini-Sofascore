@@ -68,15 +68,22 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (getItemViewType(position) == TYPE_EVENT) {
-            (holder as MatchesViewHolder).bind(matches[position] as Match?)
-        } else if (getItemViewType(position) == TYPE_TOURNAMENT) {
-            (holder as TournamentViewHolder).bind(
-                matches[position] as String,
-                matches[position + 1] as Match?
-            )
-        } else
-            (holder as LeaguesViewHolder).bind(matches[position] as Tournament)
+
+        when (getItemViewType(position)) {
+            TYPE_EVENT -> {
+                (holder as MatchesViewHolder).bind(matches[position] as Match?)
+            }
+            TYPE_TOURNAMENT -> {
+                (holder as TournamentViewHolder).bind(
+                    matches[position] as String,
+                    matches[position + 1] as Match?
+                )
+            }
+            TYPE_LEAGUES -> {
+                (holder as LeaguesViewHolder).bind(matches[position] as Tournament)
+            }
+            else -> throw IllegalArgumentException()
+        }
 
         holder.itemView.setOnClickListener {
             val match = matches.getOrNull(position) as? Match

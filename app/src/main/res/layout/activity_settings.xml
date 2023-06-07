@@ -71,6 +71,7 @@
                 android:textColor="@color/color_primary_default" />
 
             <TextView
+                android:id="@+id/app_language"
                 style="@style/BodyParagraph"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,8 +86,9 @@
             android:id="@+id/language_spinner"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="12dp" />
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="12dp"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
     </LinearLayout>
 
     <View
@@ -126,8 +128,9 @@
             android:id="@+id/light_button"
             android:layout_width="28dp"
             android:layout_height="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="14dp" />
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="14dp"
+            tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
 
     </LinearLayout>
 
@@ -152,8 +155,9 @@
             android:id="@+id/dark_button"
             android:layout_width="28dp"
             android:layout_height="24dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="14dp" />
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="14dp"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </LinearLayout>
 
@@ -210,7 +214,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/app"
-        android:textColor="@color/on_surface_on_surface_lv_2" />
+        android:textColor="@color/on_surface_on_surface_lv_2"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         style="@style/BodyParagraph"
@@ -231,7 +236,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/api_credit"
-        android:textColor="@color/on_surface_on_surface_lv_2" />
+        android:textColor="@color/on_surface_on_surface_lv_2"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         style="@style/BodyParagraph"
@@ -252,7 +258,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="@string/developer"
-        android:textColor="@color/on_surface_on_surface_lv_2" />
+        android:textColor="@color/on_surface_on_surface_lv_2"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         style="@style/BodyParagraph"
@@ -276,8 +283,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:layout_marginTop="16dp"
         android:layout_marginStart="114dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/ic_sofascore_logo"
         tools:ignore="ContentDescription" />
 
@@ -285,10 +292,10 @@
         android:id="@+id/log_out_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/log_out"
-        android:layout_marginTop="40dp"
         android:layout_marginStart="25dp"
-        android:background="@color/color_primary_highlight"/>
+        android:layout_marginTop="40dp"
+        android:background="@color/color_primary_highlight"
+        android:text="@string/log_out" />
 
 
 </LinearLayout>
