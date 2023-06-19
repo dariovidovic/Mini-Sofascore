@@ -1,6 +1,5 @@
 package com.example.mini_sofascore.paging
 
-import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.example.mini_sofascore.data.Match
@@ -23,8 +22,6 @@ class MatchesPagingSource(private val id: Int, private val type: String) :
         val nextKey = pageIndex + 1
         val matchesResponse: Response<List<Match>>
 
-        Log.d("prevKey", prevKey.toString())
-        Log.d("nextKey", nextKey.toString())
 
         when (type) {
             Type.TOURNAMENT -> {
@@ -49,6 +46,16 @@ class MatchesPagingSource(private val id: Int, private val type: String) :
                 } else {
                     RetrofitHelper.getRetrofitInstance()
                         .getTeamMatches(id = id, span = "next", page = pageIndex)
+                }
+            }
+
+            Type.PLAYER -> {
+                matchesResponse = if (prevKey < 0) {
+                    RetrofitHelper.getRetrofitInstance()
+                        .getPlayerMatches(id = id, span = "last", page = -pageIndex)
+                } else {
+                    RetrofitHelper.getRetrofitInstance()
+                        .getPlayerMatches(id = id, span = "next", page = pageIndex)
                 }
             }
 

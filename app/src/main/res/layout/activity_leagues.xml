@@ -18,6 +18,26 @@
             android:layout_height="?actionBarSize"
             android:background="@color/color_primary_default"
             app:contentInsetStart="16dp">
+
+            <LinearLayout
+                android:id="@+id/back_button_layout"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="4dp"
+                android:gravity="center"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/back_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_arrow_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
+            </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.tabs.TabLayout
@@ -26,9 +46,12 @@
             android:layout_height="wrap_content"
             android:background="@color/color_primary_default"
             app:tabIconTint="@color/surface_surface_1"
+            app:tabIndicator="@drawable/tab_indicator"
+            app:tabIndicatorColor="@color/surface_surface_1"
             app:tabSelectedTextColor="@color/surface_surface_1"
             app:tabTextAppearance="@style/Body"
-            app:tabTextColor="@color/surface_surface_1" />
+            app:tabTextColor="@color/surface_surface_1"
+            tools:ignore="SpeakableTextPresentCheck" />
 
 
     </com.google.android.material.appbar.AppBarLayout>

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/fav_matches"
+        android:icon="@drawable/ic_my_matches"
+        android:title="@string/my_matches"
+        app:showAsAction="ifRoom" />
+
     <item
         android:id="@+id/trophy"
         android:icon="@drawable/ic_icon_trophy"
@@ -12,5 +19,7 @@
         android:icon="@drawable/ic_icon_settings"
         android:title="@string/settings"
         app:showAsAction="ifRoom" />
+
+
 
 </menu>

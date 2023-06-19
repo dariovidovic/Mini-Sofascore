@@ -25,7 +25,7 @@
             android:layout_margin="4dp"
             android:gravity="center"
             android:minWidth="16dp"
-            android:textColor="#121212"
+            android:textColor="@color/on_surface_on_surface_lv_1"
             tools:text="1" />
 
     </LinearLayout>
@@ -39,7 +39,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:minWidth="104dp"
-        android:textColor="#121212"
+        android:textColor="@color/on_surface_on_surface_lv_1"
         app:layout_constraintStart_toEndOf="@id/position_layout"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Atl.Madrid" />
@@ -53,7 +53,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:minWidth="24dp"
-        android:textColor="#121212"
+        android:textColor="@color/on_surface_on_surface_lv_1"
         app:layout_constraintEnd_toStartOf="@id/team_matches_won"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="15" />
@@ -67,7 +67,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:minWidth="24dp"
-        android:textColor="#121212"
+        android:textColor="@color/on_surface_on_surface_lv_1"
         app:layout_constraintEnd_toStartOf="@id/team_matches_drew"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="12" />
@@ -81,7 +81,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:minWidth="24dp"
-        android:textColor="#121212"
+        android:textColor="@color/on_surface_on_surface_lv_1"
         app:layout_constraintEnd_toStartOf="@id/team_matches_lost"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="2" />
@@ -95,7 +95,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:minWidth="24dp"
-        android:textColor="#121212"
+        android:textColor="@color/on_surface_on_surface_lv_1"
         app:layout_constraintEnd_toStartOf="@id/team_total_goals"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1" />
@@ -109,7 +109,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:minWidth="40dp"
-        android:textColor="#121212"
+        android:textColor="@color/on_surface_on_surface_lv_1"
         app:layout_constraintEnd_toStartOf="@id/team_total_points"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="34:6" />
@@ -124,7 +124,7 @@
         android:layout_marginEnd="8dp"
         android:gravity="center"
         android:minWidth="24dp"
-        android:textColor="#121212"
+        android:textColor="@color/on_surface_on_surface_lv_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="1" />

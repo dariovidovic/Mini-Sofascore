@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mini_sofascore.adapters.TournamentMatchesAdapter
 import com.example.mini_sofascore.databinding.FragmentTeamMatchesBinding
+import com.example.mini_sofascore.utils.Slug
 import com.example.mini_sofascore.viewmodels.MatchesViewModel
 import kotlinx.coroutines.launch
 
@@ -21,7 +22,7 @@ class TeamMatchesFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = this.arguments
-        val teamId = bundle?.getInt(TEAM_ID)
+        val teamId = bundle?.getInt(Slug.TEAM_ID)
         viewModel.teamId = teamId ?: 0
         super.onCreate(savedInstanceState)
     }
@@ -42,20 +43,15 @@ class TeamMatchesFragment : Fragment() {
             lifecycleScope.launch {
                 adapter.submitData(it)
             }
-
         }
-
         return binding.root
     }
 
     companion object {
-
-        const val TEAM_ID = "teamId"
-
         fun newInstance(currentTeamId: Int): TeamMatchesFragment {
             val fragment = TeamMatchesFragment()
             val bundle = Bundle()
-            bundle.putInt(TEAM_ID, currentTeamId)
+            bundle.putInt(Slug.TEAM_ID, currentTeamId)
             fragment.arguments = bundle
             return fragment
         }

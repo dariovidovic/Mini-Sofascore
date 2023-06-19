@@ -13,7 +13,7 @@ import com.example.mini_sofascore.databinding.MatchesItemBinding
 import com.example.mini_sofascore.databinding.TournamentItemBinding
 import com.example.mini_sofascore.utils.Helper
 import com.example.mini_sofascore.utils.MatchesViewHolder
-import java.lang.IllegalArgumentException
+import kotlin.IllegalArgumentException
 
 private const val TYPE_TOURNAMENT = 0
 private const val TYPE_EVENT = 1
@@ -25,30 +25,36 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
-        return if (viewType == TYPE_EVENT) {
-            MatchesViewHolder(
-                MatchesItemBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
+        when (viewType) {
+            TYPE_EVENT -> {
+                return MatchesViewHolder(
+                    MatchesItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 )
-            )
-        } else if (viewType == TYPE_TOURNAMENT)
-            TournamentViewHolder(
-                TournamentItemBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
+            }
+            TYPE_TOURNAMENT -> {
+                return TournamentViewHolder(
+                    TournamentItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 )
-            )
-        else
-            LeaguesViewHolder(
-                LeaguesItemBinding.inflate(
-                    LayoutInflater.from(parent.context),
-                    parent,
-                    false
+            }
+            TYPE_LEAGUES -> {
+                return LeaguesViewHolder(
+                    LeaguesItemBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
                 )
-            )
+            }
+            else -> throw IllegalArgumentException()
+        }
 
 
     }
@@ -62,15 +68,22 @@ class EventsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (getItemViewType(position) == TYPE_EVENT) {
-            (holder as MatchesViewHolder).bind(matches[position] as Match?)
-        } else if (getItemViewType(position) == TYPE_TOURNAMENT) {
-            (holder as TournamentViewHolder).bind(
-                matches[position] as String,
-                matches[position + 1] as Match?
-            )
-        } else
-            (holder as LeaguesViewHolder).bind(matches[position] as Tournament)
+
+        when (getItemViewType(position)) {
+            TYPE_EVENT -> {
+                (holder as MatchesViewHolder).bind(matches[position] as Match?)
+            }
+            TYPE_TOURNAMENT -> {
+                (holder as TournamentViewHolder).bind(
+                    matches[position] as String,
+                    matches[position + 1] as Match?
+                )
+            }
+            TYPE_LEAGUES -> {
+                (holder as LeaguesViewHolder).bind(matches[position] as Tournament)
+            }
+            else -> throw IllegalArgumentException()
+        }
 
         holder.itemView.setOnClickListener {
             val match = matches.getOrNull(position) as? Match

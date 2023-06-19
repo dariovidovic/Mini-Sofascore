@@ -3,6 +3,7 @@ package com.example.mini_sofascore.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mini_sofascore.TeamDetailsActivity
 import com.example.mini_sofascore.data.TeamStanding
 import com.example.mini_sofascore.databinding.AmericanFootballStandingItemBinding
 import com.example.mini_sofascore.databinding.BasketballStandingItemBinding
@@ -60,7 +61,17 @@ class StandingsAdapter :
                 tournamentStandings[position] as TeamStanding
             )
             else -> throw IllegalArgumentException()
+        }
 
+        holder.itemView.setOnClickListener {
+            tournamentStandings.let {
+                val currentTournamentStanding = it[position]
+                TeamDetailsActivity.start(
+                    holder.itemView.context,
+                    currentTournamentStanding?.team?.id ?: 1,
+                    sportName ?: Sport.FOOTBALL
+                )
+            }
         }
     }
 
@@ -79,7 +90,7 @@ class StandingsAdapter :
 
         fun bind(tournamentStandings: TeamStanding) {
             binding.run {
-                teamPosition.text = (position + 1).toString()
+                teamPosition.text = (bindingAdapterPosition + 1).toString()
                 teamName.text = tournamentStandings.team.name
                 teamMatchesPlayed.text = tournamentStandings.played.toString()
                 teamMatchesWon.text = tournamentStandings.wins.toString()
@@ -98,7 +109,7 @@ class StandingsAdapter :
 
         fun bind(tournamentStandings: TeamStanding) {
             binding.run {
-                teamPosition.text = (position + 1).toString()
+                teamPosition.text = (bindingAdapterPosition + 1).toString()
                 teamName.text = tournamentStandings.team.name
                 teamMatchesPlayed.text = tournamentStandings.played.toString()
                 teamMatchesWon.text = tournamentStandings.wins.toString()
@@ -116,7 +127,7 @@ class StandingsAdapter :
 
         fun bind(tournamentStandings: TeamStanding) {
             binding.run {
-                teamPosition.text = (position + 1).toString()
+                teamPosition.text = (bindingAdapterPosition + 1).toString()
                 teamName.text = tournamentStandings.team.name
                 teamMatchesPlayed.text = tournamentStandings.played.toString()
                 teamMatchesWon.text = tournamentStandings.wins.toString()

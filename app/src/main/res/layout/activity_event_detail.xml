@@ -11,45 +11,58 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/white">
+        android:layout_height="wrap_content"
+        android:background="@color/surface_surface_1">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/back_icon"
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="12dp"
-                android:src="@drawable/ic_icon_back"
+                app:layout_collapseMode="pin"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription" />
+                app:menu="@menu/fav_menu">
 
-            <ImageView
-                android:id="@+id/tournament_logo"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="17dp"
-                app:layout_constraintStart_toEndOf="@id/back_icon"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/ic_launcher_background" />
+                <ImageView
+                    android:id="@+id/back_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:src="@drawable/ic_icon_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription" />
 
-            <TextView
-                android:id="@+id/event_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="14dp"
-                app:layout_constraintStart_toEndOf="@id/tournament_logo"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Football, Spain, LaLiga, Round 15" />
+                <ImageView
+                    android:id="@+id/tournament_logo"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="17dp"
+                    app:layout_constraintStart_toEndOf="@id/back_icon"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:id="@+id/event_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="14dp"
+                    app:layout_constraintStart_toEndOf="@id/tournament_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Football, Spain, LaLiga, Round 15" />
+
+            </androidx.appcompat.widget.Toolbar>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -146,20 +159,49 @@
 
         <TextView
             android:id="@+id/event_status"
+            style="@style/Micro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Micro"
-            tools:text="Full Time"
-            app:layout_constraintTop_toBottomOf="@id/dash"
+            android:layout_marginStart="70dp"
             android:layout_marginTop="1dp"
             app:layout_constraintStart_toEndOf="@id/home_team_name"
-            android:layout_marginStart="70dp"/>
+            app:layout_constraintTop_toBottomOf="@id/dash"
+            tools:text="Full Time" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/no_matches_today"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/BodyParagraph"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:text="@string/no_results_yet"
+            android:textColor="@color/on_surface_on_surface_lv_2" />
+
+        <Button
+            android:id="@+id/view_tournament_details_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/surface_surface_1"
+            android:padding="8dp"
+            android:text="@string/view_tournament_details"
+            android:textColor="@color/color_primary_default" />
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/match_details_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

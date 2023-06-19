@@ -9,16 +9,17 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mini_sofascore.adapters.SquadAdapter
 import com.example.mini_sofascore.databinding.FragmentTeamSquadBinding
+import com.example.mini_sofascore.utils.Slug
 import com.example.mini_sofascore.viewmodels.TeamViewModel
 
 class TeamSquadFragment : Fragment() {
+
     private lateinit var binding: FragmentTeamSquadBinding
     private val viewModel by viewModels<TeamViewModel>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = this.arguments
-        val teamId = bundle?.getInt(TEAM_ID)
+        val teamId = bundle?.getInt(Slug.TEAM_ID)
         viewModel.getTeamPlayers(teamId ?: 0)
         viewModel.getTeamDetails(teamId ?: 0)
         super.onCreate(savedInstanceState)
@@ -37,8 +38,7 @@ class TeamSquadFragment : Fragment() {
         binding.playersRecyclerView.adapter = adapter
         binding.playersRecyclerView.layoutManager = linearLayoutManager
 
-
-        viewModel.teamDetails.observe(viewLifecycleOwner){
+        viewModel.teamDetails.observe(viewLifecycleOwner) {
             binding.coachName.text = viewModel.teamDetails.value?.managerName
         }
 
@@ -46,18 +46,15 @@ class TeamSquadFragment : Fragment() {
             adapter.setData(it)
         }
 
-
         return binding.root
     }
 
     companion object {
 
-        private const val TEAM_ID = "teamId"
-
         fun newInstance(teamId: Int): TeamSquadFragment {
             val fragment = TeamSquadFragment()
             val bundle = Bundle()
-            bundle.putInt(TEAM_ID, teamId)
+            bundle.putInt(Slug.TEAM_ID, teamId)
             fragment.arguments = bundle
             return fragment
         }

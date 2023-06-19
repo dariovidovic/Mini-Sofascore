@@ -36,7 +36,7 @@
                 android:layout_height="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                tools:ignore="ContentDescription"
+                tools:ignore="ContentDescription,ImageContrastCheck"
                 tools:src="@drawable/ic_launcher_background" />
 
             <Spinner
@@ -44,7 +44,8 @@
                 style="@style/Assistive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"/>
+                android:layout_marginStart="8dp"
+                tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         </LinearLayout>
     </LinearLayout>
 

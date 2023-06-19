@@ -33,21 +33,35 @@ interface FootballService {
         @Path("id") id: Int,
         @Path("span") span: String,
         @Path("page") page: Int
-    ) : Response<List<Match>>
+    ): Response<List<Match>>
 
     @GET("/team/{id}/events/{span}/{page}")
     suspend fun getTeamMatches(
         @Path("id") id: Int,
         @Path("span") span: String,
         @Path("page") page: Int
-    ) : Response<List<Match>>
+    ): Response<List<Match>>
+
+    @GET("/player/{id}/events/{span}/{page}")
+    suspend fun getPlayerMatches(
+        @Path("id") id: Int,
+        @Path("span") span: String,
+        @Path("page") page: Int
+    ): Response<List<Match>>
+
+    @GET("/player/{id}")
+    suspend fun getPlayerDetails(@Path("id") id: Int): Response<Player>
 
     @GET("/team/{id}/players")
-    suspend fun getTeamPlayers(@Path("id") id:Int) : Response<List<Player>>
+    suspend fun getTeamPlayers(@Path("id") id: Int): Response<List<Player>>
 
     @GET("/team/{id}")
-    suspend fun getTeamDetails(@Path("id") id:Int) : Response<Team>
+    suspend fun getTeamDetails(@Path("id") id: Int): Response<Team>
 
     @GET("/team/{id}/tournaments")
-    suspend fun getTeamTournaments(@Path("id") id:Int) : Response<List<Tournament>>
+    suspend fun getTeamTournaments(@Path("id") id: Int): Response<List<Tournament>>
+
+    @GET("/event/{id}")
+    suspend fun getFavMatch(@Path("id") id: Int): Response<Match>
+
 }

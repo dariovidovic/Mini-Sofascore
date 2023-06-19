@@ -9,16 +9,17 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mini_sofascore.adapters.EventsAdapter
 import com.example.mini_sofascore.databinding.FragmentLeaguesBinding
+import com.example.mini_sofascore.utils.Slug
 import com.example.mini_sofascore.viewmodels.MatchesViewModel
 
 class LeaguesFragment : Fragment() {
-    private var _binding: FragmentLeaguesBinding? = null
-    private val binding get() = _binding!!
+
+    private lateinit var binding: FragmentLeaguesBinding
     private val viewModel by viewModels<MatchesViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val bundle = this.arguments
-        val slug = bundle?.getString("leagueSlug")
+        val slug = bundle?.getString(Slug.LEAGUE)
 
         if (slug != null) {
             viewModel.getTournaments(slug)
@@ -30,7 +31,7 @@ class LeaguesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLeaguesBinding.inflate(inflater, container, false)
+        binding = FragmentLeaguesBinding.inflate(inflater, container, false)
 
         val eventsAdapter = EventsAdapter()
         val leaguesLinearLayoutManager =
@@ -47,7 +48,7 @@ class LeaguesFragment : Fragment() {
         fun newInstance(leagueSlug: String): LeaguesFragment {
             val fragment = LeaguesFragment()
             val bundle = Bundle()
-            bundle.putString("leagueSlug", leagueSlug)
+            bundle.putString(Slug.LEAGUE, leagueSlug)
             fragment.arguments = bundle
             return fragment
         }
