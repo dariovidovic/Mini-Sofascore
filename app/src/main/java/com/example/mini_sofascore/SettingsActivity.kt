@@ -7,10 +7,8 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.mini_sofascore.databinding.ActivitySettingsBinding
@@ -27,15 +25,14 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val sharedPreferences = getSharedPreferences(Slug.SETTINGS, MODE_PRIVATE)
         binding.appLanguage.text =
             sharedPreferences.getString(Slug.LANGUAGE, resources.getString(R.string.english))
         val languages = arrayOf(
-            "",
-            resources.getString(R.string.english),
-            resources.getString(R.string.croatian)
+            "", resources.getString(R.string.english), resources.getString(R.string.croatian)
         )
         val languagesAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, languages)
         languagesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -71,6 +68,8 @@ class SettingsActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
+
+
 
         binding.languageSpinner.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {

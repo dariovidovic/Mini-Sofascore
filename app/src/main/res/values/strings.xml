@@ -78,4 +78,9 @@
     <string name="no_matches">No matches</string>
     <string name="view_tournament_details">View Tournament Details</string>
     <string name="no_results_yet">No results yet.</string>
+    <string name="enter_email">Enter e-mail</string>
+    <string name="send">Send!</string>
+    <string name="go_back">Go back</string>
+    <string name="email_success">E-mail sent!</string>
+    <string name="email_failure">Wrong e-mail address!</string>
 </resources>

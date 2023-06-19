@@ -42,8 +42,8 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="30dp"
         app:helperText="@string/required"
-        app:passwordToggleEnabled="true"
-        app:helperTextTextColor="@color/status_error">
+        app:helperTextTextColor="@color/status_error"
+        app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/user_password"

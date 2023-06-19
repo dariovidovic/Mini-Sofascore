@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.mini_sofascore.databinding.ActivityLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -36,6 +38,42 @@ class LoginActivity : AppCompatActivity() {
         binding.noAccountButton.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
+        }
+
+        var forgottenPasswordEmail: String
+
+        binding.forgotPasswordButton.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            val forgotPasswordLayout = layoutInflater.inflate(R.layout.forgot_password_layout, null)
+            val enterEmail = forgotPasswordLayout.findViewById<EditText>(R.id.enter_email)
+            with(builder) {
+                setTitle(resources.getString(R.string.enter_email))
+                setPositiveButton(resources.getString(R.string.send)) { _, _ ->
+                    forgottenPasswordEmail = enterEmail.text.toString()
+                    auth.sendPasswordResetEmail(forgottenPasswordEmail)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(
+                                    baseContext,
+                                    resources.getString(R.string.email_success),
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
+                            } else
+                                Toast.makeText(
+                                    baseContext,
+                                    resources.getString(R.string.email_failure),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                        }
+
+
+                }
+                setNegativeButton(resources.getString(R.string.go_back)) { _, _ ->
+                }
+                setView(forgotPasswordLayout)
+                show()
+            }
         }
 
     }

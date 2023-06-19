@@ -79,4 +79,9 @@
     <string name="no_matches">Nema utakmica</string>
     <string name="view_tournament_details">Pogledaj detalje turnira</string>
     <string name="no_results_yet">Nema rezultata.</string>
+    <string name="enter_email">Unesite adresu pošte</string>
+    <string name="send">Pošalji!</string>
+    <string name="go_back">Odustani</string>
+    <string name="email_success">E-mail poslan!</string>
+    <string name="email_failure">Kriva adresa pošte!</string>
 </resources>
